@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "admin-actions"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Kenneth Love", email = "11908+kennethlove@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "django<=4.2",
+    "admin_actions",
+]
+
+[project.optional-dependencies]
+celery = [
+    "celery>=5.5.3",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--randomly-seed=last --cov=admin_actions --cov-report=term-missing"
+django_find_project = false
+DJANGO_SETTINGS_MODULE = "tests.settings"
+testpaths = [
+    "tests",
+]
+
+[dependency-groups]
+dev = [
+    "django-stubs>=5.2.7",
+    "faker>=38.0.0",
+    "pytest>=9.0.1",
+    "pytest-celery>=1.2.1",
+    "pytest-cov>=7.0.0",
+    "pytest-django>=4.11.1",
+    "pytest-randomly>=4.0.1",
+]
