@@ -62,7 +62,7 @@ class QueueCeleryAction:
             )
 
     def __init__(
-        self, *, task: Task, condition: Condition | None = None, name: str | None = None
+        self, task: Task, *, condition: Condition | None = None, name: str | None = None
     ) -> None:
         """Initializes the action with optional condition and task."""
 
