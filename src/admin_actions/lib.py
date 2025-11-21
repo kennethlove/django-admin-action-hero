@@ -1,3 +1,4 @@
+import abc
 from collections.abc import Callable
 from typing import Any, TypeAlias
 
@@ -10,7 +11,7 @@ Condition: TypeAlias = Callable[[Any], bool]  # Condition to enable the action
 Function: TypeAlias = Callable[[Any], None]
 
 
-class AdminActionBaseClass:
+class AdminActionBaseClass(abc.ABC):
     """Generates an admin action for calling a function for a chosen set of records.
 
     Yes, it's basically an abstracted ``map``.
@@ -39,8 +40,9 @@ class AdminActionBaseClass:
         interface. If it is omitted, the name of the function will be used instead.
     """
 
+    @abc.abstractmethod
     def handle_item(self, item):
-        self.function(item.pk)
+        """Handles a single item from the queryset."""
 
     # noinspection PyProtectedMember
     def __call__(
@@ -88,10 +90,11 @@ class AdminActionBaseClass:
 
         self.name = name
         self.function = function
+        self.__name__ = name if name else function.__name__
 
-    @property
-    def __name__(self) -> str:
-        """Returns the name of the action."""
-        if self.name:
-            return self.name
-        return self.function.__name__
+    # @property
+    # def __name__(self) -> str:
+    #     """Returns the name of the action."""
+    #     if self.name:
+    #         return self.name
+    #     return self.function.__name__
