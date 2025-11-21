@@ -94,9 +94,3 @@ class AdminActionBaseClass(abc.ABC):
         self.function = function
         self.__name__ = name if name else function.__name__
 
-    # @property
-    # def __name__(self) -> str:
-    #     """Returns the name of the action."""
-    #     if self.name:
-    #         return self.name
-    #     return self.function.__name__
