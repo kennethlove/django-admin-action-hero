@@ -2,4 +2,4 @@ from django.contrib import admin
 
 
 class AdminActionsTestModelAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ("name",)
