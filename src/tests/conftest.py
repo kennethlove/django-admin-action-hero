@@ -33,9 +33,8 @@ def admin(admin_site):
     yield AdminActionsTestModelAdmin(AdminActionsTestModel, admin_site)
 
 
-@pytest.mark.django_db
 @pytest.fixture
-def model_instance(faker):
+def model_instance(db, faker):
     def _create_instance():
         yield AdminActionsTestModel.objects.create(name=faker.word())
 

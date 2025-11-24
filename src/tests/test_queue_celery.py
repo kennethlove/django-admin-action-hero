@@ -45,9 +45,9 @@ def test_task_is_delayed_appropriately(
     _request,
 ):
     """Using the action in the Admin should delay the provided task."""
-    instance = model_instance()
-    model_instance()
-    r = _request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]})
+    instance = next(model_instance())
+    next(model_instance())
+    r = next(_request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]}))
 
     def _filter(obj: AdminActionsTestModel) -> bool:
         return obj.pk == instance.pk
