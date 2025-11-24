@@ -1,3 +1,4 @@
+from typing import Any
 from unittest import mock
 
 import pytest
@@ -24,20 +25,21 @@ def mock_function():
 
 @pytest.fixture
 def admin_site():
-    return AdminSite()
+    yield AdminSite()
 
 
 @pytest.fixture
 def admin(admin_site):
-    return AdminActionsTestModelAdmin(AdminActionsTestModel, admin_site)
+    yield AdminActionsTestModelAdmin(AdminActionsTestModel, admin_site)
 
 
+@pytest.mark.django_db
 @pytest.fixture
-def model_instance(db, faker):
+def model_instance(faker):
     def _create_instance():
-        return AdminActionsTestModel.objects.create(name=faker.word())
+        yield AdminActionsTestModel.objects.create(name=faker.word())
 
-    return _create_instance
+    yield _create_instance
 
 
 @pytest.fixture(name="_request")
@@ -45,6 +47,7 @@ def request_with_messages(rf, admin_user):
     """Create a session- and messages-enabled request."""
 
     def _request(method="get", path="/", data=None):
+        request: Any = None
         match method.lower():
             case "get":
                 request = rf.get(path, data=data or {})
@@ -57,6 +60,6 @@ def request_with_messages(rf, admin_user):
         setattr(request, "session", "session")
         setattr(request, "_messages", mock.MagicMock())
 
-        return request
+        yield request
 
-    return _request
+    yield _request
