@@ -15,9 +15,25 @@ dependencies = [
     "django<=4.2",
 ]
 
+[dependency-groups]
+dev = [
+    "django-stubs>=5.2.7",
+    "faker>=38.0.0",
+    "pytest>=9.0.1",
+    "pytest-celery>=1.2.1",
+    "pytest-cov>=7.0.0",
+    "pytest-django>=4.11.1",
+    "pytest-randomly>=4.0.1",
+]
+
 [project.optional-dependencies]
 celery = [
     "celery>=5.5.3",
+]
+
+[tool.boa-restrictor]
+exclude = [
+    "PBR001"
 ]
 
 [tool.pytest.ini_options]
@@ -29,13 +45,11 @@ testpaths = [
     "src/tests",
 ]
 
-[dependency-groups]
-dev = [
-    "django-stubs>=5.2.7",
-    "faker>=38.0.0",
-    "pytest>=9.0.1",
-    "pytest-celery>=1.2.1",
-    "pytest-cov>=7.0.0",
-    "pytest-django>=4.11.1",
-    "pytest-randomly>=4.0.1",
-]
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff.lint]
+# Avoiding flagging and removing any codes starting with `PBR` from any
+# `# noqa` directives, despite Ruff's lack of support for `boa-restrictor`.
+external = ["PBR", "DBR"]
