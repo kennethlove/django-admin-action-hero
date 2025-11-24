@@ -6,6 +6,9 @@ import celery
 from admin_actions.lib import AdminActionBaseClass, Condition
 
 
+Task: TypeAlias = FunctionType  # Celery task to be called
+
+
 class QueueCeleryAction(AdminActionBaseClass):
     """Generates an admin action for queuing a Celery task for a chosen set of records.
 
@@ -33,8 +36,6 @@ class QueueCeleryAction(AdminActionBaseClass):
     the task for that record.
     """
 
-    Task: TypeAlias = FunctionType  # Celery task to be called
-
     def handle_item(self, item):
         """Queues the Celery task for the given item."""
         self.task.delay(item.pk)
@@ -42,7 +43,7 @@ class QueueCeleryAction(AdminActionBaseClass):
     def __init__(
         self, task: Task, *, condition: Condition | None = None, name: str | None = None
     ) -> None:
-        """Initializes the action with task and optional condition."""
+        """Initializes the action with a task and optional condition."""
 
         if not isinstance(task, (celery.Task,)):
             raise TypeError(f"The task must be a Celery task. Got {type(task)}")

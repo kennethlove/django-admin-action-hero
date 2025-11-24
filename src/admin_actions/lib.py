@@ -45,6 +45,7 @@ class AdminActionBaseClass:
     def handle_item(self, item):
         self.function(item.pk)
 
+    # noinspection PyProtectedMember
     def __call__(
         self, modeladmin: ModelAdmin, request: HttpRequest, queryset: QuerySet
     ) -> None:
@@ -70,7 +71,7 @@ class AdminActionBaseClass:
 
     def __init__(
         self,
-        function: FunctionType,
+        function: FunctionType | Callable[[Any], None],
         *,
         condition: Condition | None = None,
         name: str | None = None,

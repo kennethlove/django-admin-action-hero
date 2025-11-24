@@ -3,8 +3,8 @@ from unittest import mock
 import pytest
 from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 
-from admin_actions.actions.queue_celery import QueueCeleryAction
-from tests._app.models import AdminActionsTestModel
+from admin_actions.actions import QueueCeleryAction
+from tests.app.models import AdminActionsTestModel
 
 
 @pytest.fixture(scope="session")
@@ -33,7 +33,7 @@ def celery_task(celery_session_app):
 @pytest.fixture
 def mock_task(celery_task):
     with mock.patch.object(celery_task, "delay", wraps=celery_task.delay) as mock_delay:
-        yield mock_delay
+        return mock_delay
 
 
 @pytest.mark.django_db
@@ -52,6 +52,7 @@ def test_task_is_delayed_appropriately(
     def _filter(obj: AdminActionsTestModel) -> bool:
         return obj.pk == instance.pk
 
+    # noinspection PyTypeChecker
     queue_action = QueueCeleryAction(celery_task, condition=_filter)
     queue_action(admin, r, AdminActionsTestModel.objects.all())
 
@@ -65,4 +66,5 @@ def test_non_celery_task_raises():
         return 0
 
     with pytest.raises(TypeError):
+        # noinspection PyTypeChecker
         QueueCeleryAction(task=not_a_celery_task)  # pyright: ignore[reportArgumentType]
