@@ -20,7 +20,7 @@ class AdminActionBaseClass:
         conditional_action = MyAdminAction(
             function=my_function,
             condition=lambda record: record.should_process(),
-            name="process_records"
+            name="process_records",
         )
 
         def my_function(record_id):
