@@ -43,7 +43,7 @@ def mock_task(celery_task):
 @pytest.fixture
 def mock_delay(celery_task):
     with mock.patch.object(
-        target="admin_actions.actions.QueueCeleryAction",
+        target=celery_task,
         attribute="delay",
         wraps=celery_task.delay,
     ) as mock_delay:
