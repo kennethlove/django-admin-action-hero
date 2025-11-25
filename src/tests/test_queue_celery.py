@@ -24,7 +24,7 @@ def celery_config():
 @pytest.fixture
 def celery_task(celery_session_app):
     @celery_session_app.task
-    def sample_task(_):  # Must take a single argument
+    def sample_task(foo):  # Must take a single argument
         pass
 
     return sample_task
@@ -32,16 +32,20 @@ def celery_task(celery_session_app):
 
 @pytest.fixture
 def mock_task(celery_task):
-    return mock.Mock(
-        wraps=celery_task,
-        __type__="celery.app.task.Task",
+    return mock.patch(
+        autospec=True,
+        target="tests.test_queue_celery.celery_task",
+        attribute="__call__",
+        wraps=celery_task.__call__,
     )
 
 
 @pytest.fixture
 def mock_delay(celery_task):
     with mock.patch.object(
-        target=celery_task, attribute="delay", wraps=celery_task.delay
+        target="admin_actions.actions.QueueCeleryAction",
+        attribute="delay",
+        wraps=celery_task.delay,
     ) as mock_delay:
         return mock_delay
 
@@ -52,6 +56,7 @@ def test_task_is_delayed_appropriately(
     model_instance,
     celery_task,
     mock_task,
+    mock_delay,
     _request,
 ):
     """Using the action in the Admin should delay the provided task."""
@@ -63,9 +68,9 @@ def test_task_is_delayed_appropriately(
         return obj.pk == instance.pk
 
     # noinspection PyTypeChecker
-    queue_action = QueueCeleryAction(mock_task, condition=_filter)
+    queue_action = QueueCeleryAction(celery_task, condition=_filter)
     queue_action(admin, r, AdminActionsTestModel.objects.all())
-    mock_task.assert_called_once_with(instance.pk)
+    mock_delay.assert_called_once_with(instance.pk)
 
 
 def test_non_celery_task_raises():
