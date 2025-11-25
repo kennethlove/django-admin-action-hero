@@ -1,12 +1,6 @@
-from types import FunctionType
-from typing import TypeAlias
-
 import celery
 
 from admin_actions.lib import AdminActionBaseClass, Condition
-
-
-Task: TypeAlias = FunctionType  # Celery task to be called
 
 
 class QueueCeleryAction(AdminActionBaseClass):
@@ -36,16 +30,23 @@ class QueueCeleryAction(AdminActionBaseClass):
     the task for that record.
     """
 
+    function: celery.Task
+
     def handle_item(self, item):
         """Queues the Celery task for the given item."""
-        self.task.delay(item.pk)
+        self.function.delay(item.pk)
 
     def __init__(
-        self, task: Task, *, condition: Condition | None = None, name: str | None = None
+        self,
+        function: celery.Task,
+        *,
+        condition: Condition | None = None,
+        name: str | None = None,
     ) -> None:
         """Initializes the action with a task and optional condition."""
-        if not isinstance(task, (celery.Task,)):
-            raise TypeError(f"The task must be a Celery task. Got {type(task)}")
+        if not isinstance(function, (celery.Task,)):
+            raise TypeError(f"The task must be a Celery task. Got {type(function)}")
 
-        super().__init__(function=task, condition=condition, name=name or task.name)
-        self.task = task
+        super().__init__(
+            function=function, condition=condition, name=name or function.name
+        )
