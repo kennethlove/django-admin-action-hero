@@ -1,9 +1,9 @@
 from collections.abc import Callable
-from typing import Any
 from unittest import mock
 
 import pytest
 from django.contrib.admin import AdminSite
+from django.contrib.sessions.backends.cache import SessionStore
 from django.http import HttpRequest
 
 from .app.admin import AdminActionsTestModelAdmin
@@ -46,21 +46,23 @@ def model_instance(db, faker) -> Callable[[], AdminActionsTestModel]:
 
 
 @pytest.fixture(name="_request")
-def request_with_messages(rf, admin_user) -> Callable[[str, str, dict | None], Any]:
+def request_with_messages(
+    rf, admin_user
+) -> Callable[[str, str, dict | None], HttpRequest]:
     """Create a session- and messages-enabled request."""
 
-    def _request(method: str ="get", path: str ="/", data: dict | None = None) -> HttpRequest:
-        request: HttpRequest = None  # type: ignore
-        match method.lower():
-            case "get":
-                request = rf.get(path, data=data or {})
-            case "post":
-                request = rf.post(path, data or {})
-            case _:
-                raise ValueError(f"Unsupported method: {method}")
+    def _request(
+        method: str = "get", path: str = "/", data: dict | None = None
+    ) -> HttpRequest:
+        if method.lower() == "get":
+            request = rf.get(path, data=data or {})
+        elif method.lower() == "post":
+            request = rf.post(path, data or {})
+        else:
+            raise ValueError(f"Unsupported method: {method}")
 
         request.user = admin_user
-        setattr(request, "session", "session")
+        setattr(request, "session", SessionStore())
         setattr(request, "_messages", mock.MagicMock())
 
         return request
