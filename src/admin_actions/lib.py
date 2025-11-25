@@ -1,5 +1,4 @@
 from collections.abc import Callable
-from types import FunctionType
 from typing import Any, TypeAlias
 
 from django.contrib import messages
@@ -8,6 +7,7 @@ from django.db.models import QuerySet
 from django.http import HttpRequest
 
 Condition: TypeAlias = Callable[[Any], bool]  # Condition to enable the action
+Function: TypeAlias = Callable[[Any], None]
 
 
 class AdminActionBaseClass:
@@ -46,7 +46,7 @@ class AdminActionBaseClass:
     def __call__(
         self, modeladmin: ModelAdmin, request: HttpRequest, queryset: QuerySet
     ) -> None:
-        """Admin action to queue task for selected records."""
+        """Admin action to call `self.function` for `queryset` records that pass `self.condition`."""
         _count: int = 0
 
         for record in queryset:
@@ -68,7 +68,7 @@ class AdminActionBaseClass:
 
     def __init__(
         self,
-        function: FunctionType | Callable[[Any], None],
+        function: Function,
         *,
         condition: Condition | None = None,
         name: str | None = None,
@@ -81,7 +81,7 @@ class AdminActionBaseClass:
             else:
                 raise TypeError("The condition must be a callable.")
         else:
-            self.condition = lambda _: True  # Default condition always returns True
+            self.condition = lambda _: True  # The default condition always returns True
 
         if not callable(function):  # Cannot call a non-callable task
             raise TypeError("The function must be a callable.")
