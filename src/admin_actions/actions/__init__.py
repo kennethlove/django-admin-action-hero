@@ -6,7 +6,7 @@ __all__ = [
 
 # Guard import for Celery integration
 try:
-    from .queue_celery import QueueCeleryAction  # noqa: F401 # TODO: Replace with find_spec.
+    from .queue_celery import QueueCeleryAction  # noqa: F401
 except ImportError:
     pass
 else:
