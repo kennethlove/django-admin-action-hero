@@ -13,13 +13,14 @@ Condition: TypeAlias = Callable[[Any], bool]  # Condition to enable the action
 class AdminActionBaseClass:
     """Generates an admin action for calling a function for a chosen set of records.
 
-    Yes, it's basically an abstracted `map`.
+    Yes, it's basically an abstracted ``map``.
 
-    Example usage:
+    Example usage::
+
         conditional_action = MyAdminAction(
             function=my_function,
             condition=lambda record: record.should_process(),
-            name="process_records",
+            name="process_records"
         )
 
         def my_function(record_id):
@@ -30,16 +31,12 @@ class AdminActionBaseClass:
             actions = [conditional_action]
             model = MyModel
 
-    The `function` parameter is required and should be a callable that takes a
-    single model instance's primary key as an argument.
-
-    The `condition` parameter is optional. If provided, it should be a callable
-    that takes a model instance and returns a boolean indicating whether to queue
-    the task for that record.
-
-    The `name` parameter is also optional. If provided, it will be used as the
-    action's name in the admin interface. If it is omitted, the name of the
-    function will be used instead.
+    :param function: Required. Should be a callable that takes a single model instance's
+        primary key as an argument.
+    :param condition: Optional. If provided, it should be a callable that takes a model
+        instance and returns a boolean indicating whether to queue the task for that record.
+    :param name: Optional. If provided, it will be used as the action's name in the admin
+        interface. If it is omitted, the name of the function will be used instead.
     """
 
     def handle_item(self, item):
