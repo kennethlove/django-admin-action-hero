@@ -2,7 +2,7 @@ import pytest
 from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 
 from admin_actions.lib import AdminActionBaseClass
-from tests._app.models import AdminActionsTestModel
+from tests.app.models import AdminActionsTestModel
 
 
 def test_generated_action_is_registrable(admin, rf, admin_user, mock_function):
@@ -27,7 +27,7 @@ def test_generated_action_is_nameable(admin, rf, admin_user):
     r = rf.get("/")
     r.user = admin_user
 
-    queue_action = AdminActionBaseClass(lambda _: ..., name="custom_action_name")
+    queue_action = AdminActionBaseClass(lambda _: None, name="custom_action_name")
     admin.actions += (queue_action,)
 
     actions = admin.get_actions(r)
@@ -69,7 +69,7 @@ def test_condition_failure_excludes_records(
     queue_action = AdminActionBaseClass(mock_function, condition=lambda _: False)
     queue_action(admin, r, AdminActionsTestModel.objects.all())
 
-    # Every record was rejected, task should never be delayed
+    # Every record was rejected, no tasks should be delayed
     mock_function.assert_not_called()
 
 
@@ -91,17 +91,19 @@ def test_condition_result_determines_record_inclusion(
     queue_action = AdminActionBaseClass(mock_function, condition=condition)
     queue_action(admin, r, AdminActionsTestModel.objects.all())
 
-    # The record met the condition, task should be delayed
+    # The record met the condition, a task should be delayed
     mock_function.assert_called_once_with(instance.pk)
 
 
 def test_noncallable_condition_raises():
     """Providing a non-callable condition should raise an error."""
     with pytest.raises(TypeError):
-        AdminActionBaseClass(lambda _: ..., condition="not_a_function")  # pyright: ignore[reportArgumentType]
+        # noinspection PyTypeChecker
+        AdminActionBaseClass(lambda _: None, condition="not_a_function")  # pyright: ignore[reportArgumentType]
 
 
 def test_noncallable_function_raises():
     """Providing a non-callable function should raise an error."""
     with pytest.raises(TypeError):
+        # noinspection PyTypeChecker
         AdminActionBaseClass("not_a_function")  # pyright: ignore[reportArgumentType]

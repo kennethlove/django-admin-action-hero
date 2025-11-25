@@ -4,12 +4,13 @@ from unittest import mock
 import pytest
 from django.contrib.admin import AdminSite
 
-from ._app.admin import AdminActionsTestModelAdmin
-from ._app.models import AdminActionsTestModel
+from .app.admin import AdminActionsTestModelAdmin
+from .app.models import AdminActionsTestModel
 
 
 @pytest.fixture
 def mock_function():
+    # noinspection PyUnusedLocal
     def _empty_function(*args, **kwargs):
         """A no-op function for testing purposes."""
         pass
@@ -20,25 +21,26 @@ def mock_function():
         wraps=_empty_function.__call__,
         __name__="empty_function",
     ) as mock_fn:
-        yield mock_fn
+        return mock_fn
 
 
 @pytest.fixture
 def admin_site():
-    yield AdminSite()
+    return AdminSite()
 
 
 @pytest.fixture
 def admin(admin_site):
-    yield AdminActionsTestModelAdmin(AdminActionsTestModel, admin_site)
+    return AdminActionsTestModelAdmin(AdminActionsTestModel, admin_site)
 
 
+# noinspection PyUnusedLocal
 @pytest.fixture
 def model_instance(db, faker):
     def _create_instance():
-        yield AdminActionsTestModel.objects.create(name=faker.word())
+        return AdminActionsTestModel.objects.create(name=faker.word())
 
-    yield _create_instance
+    return _create_instance
 
 
 @pytest.fixture(name="_request")
@@ -59,6 +61,6 @@ def request_with_messages(rf, admin_user):
         setattr(request, "session", "session")
         setattr(request, "_messages", mock.MagicMock())
 
-        yield request
+        return request
 
-    yield _request
+    return _request

@@ -2,7 +2,7 @@ import pytest
 from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 
 from admin_actions.actions.broadcast_pubsub import BroadcastPubSubAction
-from tests._app.models import AdminActionsTestModel
+from tests.app.models import AdminActionsTestModel
 
 
 @pytest.mark.django_db

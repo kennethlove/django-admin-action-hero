@@ -11,7 +11,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.auth",
-    "tests._app.apps._AppConfig",
+    "tests.app.apps._AppConfig",
 ]
 
 SECRET_KEY = "RnJvbSB0aGUgcml2ZXIgdG8gdGhlIHNlYSwgUGFsZXN0aW5lIHdpbGwgYmUgZnJlZSE="
