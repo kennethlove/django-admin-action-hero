@@ -1,15 +1,17 @@
+from collections.abc import Callable
 from typing import Any
 from unittest import mock
 
 import pytest
 from django.contrib.admin import AdminSite
+from django.http import HttpRequest
 
 from .app.admin import AdminActionsTestModelAdmin
 from .app.models import AdminActionsTestModel
 
 
 @pytest.fixture
-def mock_function():
+def mock_function() -> mock.MagicMock:
     # noinspection PyUnusedLocal
     def _empty_function(*args, **kwargs):
         """A no-op function for testing purposes."""
@@ -25,30 +27,30 @@ def mock_function():
 
 
 @pytest.fixture
-def admin_site():
+def admin_site() -> AdminSite:
     return AdminSite()
 
 
 @pytest.fixture
-def admin(admin_site):
+def admin(admin_site) -> AdminActionsTestModelAdmin:
     return AdminActionsTestModelAdmin(AdminActionsTestModel, admin_site)
 
 
 # noinspection PyUnusedLocal
 @pytest.fixture
-def model_instance(db, faker):
-    def _create_instance():
+def model_instance(db, faker) -> Callable[[], AdminActionsTestModel]:
+    def _create_instance() -> AdminActionsTestModel:
         return AdminActionsTestModel.objects.create(name=faker.word())
 
     return _create_instance
 
 
 @pytest.fixture(name="_request")
-def request_with_messages(rf, admin_user):
+def request_with_messages(rf, admin_user) -> Callable[[str, str, dict], Any]:
     """Create a session- and messages-enabled request."""
 
-    def _request(method="get", path="/", data=None):
-        request: Any = None
+    def _request(method="get", path="/", data=None) -> HttpRequest:
+        request: HttpRequest = None  # type: ignore
         match method.lower():
             case "get":
                 request = rf.get(path, data=data or {})
