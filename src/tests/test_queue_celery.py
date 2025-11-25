@@ -31,16 +31,6 @@ def celery_task(celery_session_app):
 
 
 @pytest.fixture
-def mock_task(celery_task):
-    return mock.patch(
-        autospec=True,
-        target="tests.test_queue_celery.celery_task",
-        attribute="__call__",
-        wraps=celery_task.__call__,
-    )
-
-
-@pytest.fixture
 def mock_delay(celery_task, monkeypatch):
     mock_delay = mock.Mock()
     monkeypatch.setattr(celery_task, "delay", mock_delay)
@@ -52,7 +42,6 @@ def test_task_is_delayed_appropriately(
     admin,
     model_instance,
     celery_task,
-    mock_task,
     mock_delay,
     _request,
 ):
