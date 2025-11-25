@@ -41,13 +41,10 @@ def mock_task(celery_task):
 
 
 @pytest.fixture
-def mock_delay(celery_task):
-    with mock.patch.object(
-        target=celery_task,
-        attribute="delay",
-        wraps=celery_task.delay,
-    ) as mock_delay:
-        return mock_delay
+def mock_delay(celery_task, monkeypatch):
+    mock_delay = mock.Mock()
+    monkeypatch.setattr(celery_task, "delay", mock_delay)
+    return mock_delay
 
 
 @pytest.mark.django_db
