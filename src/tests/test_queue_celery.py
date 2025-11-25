@@ -24,8 +24,8 @@ def celery_config():
 @pytest.fixture
 def celery_task(celery_session_app):
     @celery_session_app.task
-    def sample_task(foo):  # Must take a single argument
-        pass
+    def sample_task(sample_pk: int):  # Must take a single argument
+        print(f"Processing record {sample_pk}")
 
     return sample_task
 
