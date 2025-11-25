@@ -46,10 +46,10 @@ def model_instance(db, faker) -> Callable[[], AdminActionsTestModel]:
 
 
 @pytest.fixture(name="_request")
-def request_with_messages(rf, admin_user) -> Callable[[str, str, dict], Any]:
+def request_with_messages(rf, admin_user) -> Callable[[str, str, dict | None], Any]:
     """Create a session- and messages-enabled request."""
 
-    def _request(method="get", path="/", data=None) -> HttpRequest:
+    def _request(method: str ="get", path: str ="/", data: dict | None = None) -> HttpRequest:
         request: HttpRequest = None  # type: ignore
         match method.lower():
             case "get":
