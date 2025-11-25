@@ -46,8 +46,8 @@ def test_generated_action_is_callable(
     _request,
 ):
     """Using the action in the Admin should call the provided function."""
-    instance = next(model_instance())
-    r = next(_request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]}))
+    instance = model_instance()
+    r = _request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]})
 
     queue_action = AdminActionBaseClass(mock_function)
     queue_action(admin, r, AdminActionsTestModel.objects.all())
@@ -63,8 +63,8 @@ def test_condition_failure_excludes_records(
     _request,
 ):
     """The condition should exclude all failing records."""
-    instance = next(model_instance())
-    r = next(_request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]}))
+    instance = model_instance()
+    r = _request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]})
 
     queue_action = AdminActionBaseClass(mock_function, condition=lambda _: False)
     queue_action(admin, r, AdminActionsTestModel.objects.all())
@@ -81,9 +81,9 @@ def test_condition_result_determines_record_inclusion(
     _request,
 ):
     """The condition should include and exclude appropriately."""
-    instance = next(model_instance())
-    next(model_instance())  # A second instance that should be excluded
-    r = next(_request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]}))
+    instance = model_instance()
+    model_instance()  # A second instance that should be excluded
+    r = _request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]})
 
     def condition(record):
         return record.pk == instance.pk
