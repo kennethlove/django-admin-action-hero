@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 
-from admin_actions.actions.broadcast_pubsub import BroadcastPubSubAction
+from admin_actions.actions import BroadcastPubSubAction
 from tests.app.models import AdminActionsTestModel
 
 
