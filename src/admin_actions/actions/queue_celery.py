@@ -44,9 +44,8 @@ class QueueCeleryAction(AdminActionBaseClass):
         self, task: Task, *, condition: Condition | None = None, name: str | None = None
     ) -> None:
         """Initializes the action with a task and optional condition."""
-
         if not isinstance(task, (celery.Task,)):
             raise TypeError(f"The task must be a Celery task. Got {type(task)}")
 
-        self.task = task
         super().__init__(function=task, condition=condition, name=name or task.name)
+        self.task = task
