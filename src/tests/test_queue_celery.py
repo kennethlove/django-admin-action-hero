@@ -77,6 +77,7 @@ def test_celery_not_available(monkeypatch):
 
     if "admin_actions.actions" in sys.modules:
         del sys.modules["admin_actions.actions"]
+    if "admin_actions.actions.queue_celery" in sys.modules:
         del sys.modules["admin_actions.actions.queue_celery"]
 
     monkeypatch.setitem(sys.modules, "celery", None)
