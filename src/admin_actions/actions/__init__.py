@@ -1,5 +1,3 @@
-from importlib.util import find_spec
-
 from .broadcast_pubsub import BroadcastPubSubAction
 
 __all__ = [
@@ -7,12 +5,9 @@ __all__ = [
 ]
 
 # Guard import for Celery integration
-if find_spec("celery") is not None:
-    from .queue_celery import QueueCeleryAction
-
-    __all__ += ["QueueCeleryAction"]
+try:
+    from .queue_celery import QueueCeleryAction  # noqa: F401 # TODO: Replace with find_spec.
+except ImportError:
+    pass
 else:
-    raise ImportError(
-        "Celery integration requires celery to be installed. "
-        "Install it with: pip install admin-actions[celery]"
-    )
+    __all__.append("QueueCeleryAction")

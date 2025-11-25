@@ -1,4 +1,10 @@
-import celery
+try:
+    import celery
+except ImportError as e:
+    raise ImportError(
+        "Celery integration requires celery to be installed. "
+        "Install it with: pip install admin-actions[celery]"
+    ) from e
 
 from admin_actions.lib import AdminActionBaseClass, Condition
 

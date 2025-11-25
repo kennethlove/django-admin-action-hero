@@ -70,9 +70,36 @@ def test_non_celery_task_raises():
         QueueCeleryAction(task=not_a_celery_task)  # pyright: ignore[reportArgumentType]
 
 
-@mock.patch("admin_actions.actions.find_spec", return_value=None)
-def test_celery_not_available_raises(_mock_find_spec):
-    """Celery not being installed should raise an ImportError."""
+def test_celery_not_available(monkeypatch):
+    """Without Celery installed, `from admin_actions.actions import *` should not include `QueueCeleryAction`."""
+    import sys
+    from importlib import reload
 
-    with pytest.raises(ImportError):
-        from admin_actions.actions import QueueCeleryAction  # noqa: F401
+    if "admin_actions.actions" in sys.modules:
+        del sys.modules["admin_actions.actions"]
+        del sys.modules["admin_actions.actions.queue_celery"]
+
+    monkeypatch.setitem(sys.modules, "celery", None)
+
+    import admin_actions.actions
+
+    reload(admin_actions.actions)
+    assert "QueueCeleryAction" not in admin_actions.actions.__all__
+
+
+def test_celery_not_available_raises(monkeypatch):
+    """Celery not being installed should raise an ImportError."""
+    import sys
+    from importlib import reload
+
+    if "admin_actions.actions.queue_celery" in sys.modules:
+        del sys.modules["admin_actions.actions.queue_celery"]
+
+    monkeypatch.setitem(sys.modules, "celery", None)
+
+    with pytest.raises(
+        ImportError, match="Celery integration requires celery to be installed"
+    ):
+        import admin_actions.actions.queue_celery
+
+        reload(admin_actions.actions.queue_celery)
