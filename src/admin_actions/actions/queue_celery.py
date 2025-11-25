@@ -6,7 +6,8 @@ from admin_actions.lib import AdminActionBaseClass, Condition
 class QueueCeleryAction(AdminActionBaseClass):
     """Generates an admin action for queuing a Celery task for a chosen set of records.
 
-    Usage:
+    Example usage::
+
         conditional_action = QueueCeleryAction(
             task=my_celery_task,
             condition=lambda record: record.should_process(),
@@ -22,12 +23,13 @@ class QueueCeleryAction(AdminActionBaseClass):
             actions = [conditional_action, QueueCeleryAction(...), another_action]
             model = MyModel
 
-    The `task` parameter is required and should be a Celery task callable that
-    takes a single model instance's primary key as an argument.
-
-    The `condition` parameter is optional. If provided, it should be a callable
-    that takes a model instance and returns a boolean indicating whether to queue
-    the task for that record.
+    :param task: Required. Should be a Celery Task callable that takes a single
+        model instance's primary key as an argument.
+    :param condition: Optional. If provided, it should be a callable that takes a
+        model instance and returns a boolean indicating whether to queue the task
+        for that record.
+    :param name: Optional. If provided, it will be used as the action's name in the
+        admin interface. If it is omitted, the name of the task will be used instead.
     """
 
     function: celery.Task
@@ -38,15 +40,15 @@ class QueueCeleryAction(AdminActionBaseClass):
 
     def __init__(
         self,
-        function: celery.Task,
+        task: celery.Task,
         *,
         condition: Condition | None = None,
         name: str | None = None,
     ) -> None:
         """Initializes the action with a task and optional condition."""
-        if not isinstance(function, (celery.Task,)):
-            raise TypeError(f"The task must be a Celery task. Got {type(function)}")
+        if not isinstance(task, (celery.Task,)):
+            raise TypeError(f"The task must be a Celery task. Got {type(task)}")
 
         super().__init__(
-            function=function, condition=condition, name=name or function.name
-        )
+            function=task, condition=condition, name=name or task.name
+        )  # Note that `task` ends here. Use `self.function`.
