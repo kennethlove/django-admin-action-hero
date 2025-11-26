@@ -52,7 +52,7 @@ class AdminActionBaseClass(abc.ABC):
         NOTE: This method _is not_ asynchronous or in another thread/process; large quantities of
         work should be done in other ways or places, not solely in this method.
 
-        :param item: The model instance being process.
+        :param item: The model instance being processed.
         """
 
     def __call__(
