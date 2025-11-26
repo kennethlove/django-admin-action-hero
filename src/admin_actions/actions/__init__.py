@@ -1,7 +1,7 @@
-from .broadcast_pubsub import BroadcastPubSubAction
+from .simple import SimpleAdminAction
 
 __all__ = [
-    "BroadcastPubSubAction",
+    "SimpleAdminAction",
 ]
 
 # Guard import for Celery integration

@@ -1,4 +1,4 @@
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from unittest import mock
 
 import pytest
@@ -43,14 +43,13 @@ def model_instance(db, faker) -> Callable[[], AdminActionsTestModel]:
     return _create_instance
 
 
-@pytest.fixture(name="_request")
 def request_with_messages(
     rf, admin_user
-) -> Callable[[str, str, dict | None], HttpRequest]:
+) -> Callable[[str, str, Mapping[str, list] | None], HttpRequest]:
     """Create a session- and messages-enabled request."""
 
     def _request(
-        method: str = "get", path: str = "/", data: dict | None = None
+        method: str = "get", path: str = "/", data: Mapping[str, list] | None = None
     ) -> HttpRequest:
         if method.lower() == "get":
             request = rf.get(path, data=data or {})
@@ -66,3 +65,8 @@ def request_with_messages(
         return request
 
     return _request
+
+
+request_fixture: Callable[[str, str, Mapping[str, list] | None], HttpRequest] = (
+    pytest.fixture(request_with_messages, name="_request")
+)  # Decorated like this for type hinting

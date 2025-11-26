@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 
-from admin_actions.actions import BroadcastPubSubAction
+from admin_actions.actions import SimpleAdminAction
 from tests.app.models import AdminActionsTestModel
 
 
@@ -12,15 +12,15 @@ def test_function_is_called_appropriately(
     mock_function,
     _request,
 ):
-    """Using the action in the Admin should delay the provided task."""
+    """Using the action in the Admin should call the provided function."""
     instance = model_instance()
     model_instance()
-    r = _request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]})
+    r = _request(method="post", data={ACTION_CHECKBOX_NAME: [instance.pk]})
 
     def _filter(obj: AdminActionsTestModel) -> bool:
         return obj.pk == instance.pk
 
-    queue_action = BroadcastPubSubAction(mock_function, condition=_filter)
+    queue_action = SimpleAdminAction(mock_function, condition=_filter)
     queue_action(admin, r, AdminActionsTestModel.objects.all())
 
     mock_function.assert_called_once_with(instance.pk)
