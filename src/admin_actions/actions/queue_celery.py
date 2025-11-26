@@ -1,3 +1,6 @@
+"""Provides an admin action to queue Celery tasks for selected records."""
+
+# Guard import for Celery integration
 try:
     import celery
 except ImportError as e:
@@ -41,20 +44,31 @@ class QueueCeleryAction(AdminActionBaseClass):
     function: celery.Task
 
     def handle_item(self, item):
-        """Queues the Celery task for the given item."""
+        """Queues the Celery task for the given item.
+
+        :param item: The model instance being processed.
+        """
         self.function.delay(item.pk)
 
     def __init__(
         self,
-        task: celery.Task,
+        task: celery.Task,  # Not just any function.
         *,
         condition: Condition | None = None,
         name: str | None = None,
     ) -> None:
-        """Initializes the action with a task and optional condition."""
+        """Initializes the action with a Celery task and an optional condition.
+
+        :param task: Required. Should be a Celery Task callable that takes a single model
+            instance's primary key as an argument.
+        :param condition: Optional. If provided, it should be a callable that takes a model
+            instance and returns a Boolean indicating whether to queue the task for that record.
+        :param name: Optional. If provided, it will be used as the action's name in the admin.
+            If it is omitted, the name of the task will be used instead.
+        """
         if not isinstance(task, (celery.Task,)):
             raise TypeError(f"The task must be a Celery task. Got {type(task)}")
 
         super().__init__(
             function=task, condition=condition, name=name or task.name
-        )  # Note that `task` ends here. Use `self.function`.
+        )  # Note that `task` ends here. Use `self.function` in other methods.
