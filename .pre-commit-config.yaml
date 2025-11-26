@@ -1,38 +1,52 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
-default_stages: [commit, push]
+default_stages: [ commit, push ]
 repos:
   - repo: "https://github.com/pre-commit/pre-commit-hooks"
     rev: v6.0.0
     hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-      - id: check-added-large-files
-      - id: debug-statements
-  - repo: https://github.com/ambient-innovation/boa-restrictor
+      - id: check-added-large-files # prevents giant files from being committed
+      - id: check-ast # checks python files for simple parse errors
+      - id: check-builtin-literals # prevents from adding binary literals
+      - id: check-case-conflict # no file names that would conflict in case-insensitive filesystems
+      - id: check-illegal-windows-names # no file names that cannot be created on Windows
+      - id: check-merge-conflict # error on merge conflict strings
+      - id: check-toml # checks toml files for parse errors
+      - id: check-yaml # checks yaml files for parse errors
+      - id: debug-statements # error on debugger imports and `breakpoint()` calls
+      - id: detect-private-key # prevent secrets from being committed
+      - id: end-of-file-fixer # ensures files end with a newline
+      - id: forbid-submodules # prevents adding git submodules
+      - id: mixed-line-ending # normalize all line endings to LF
+        args: [ --fix=lf ]
+      - id: name-tests-test # error if tests files don't start with `test_`'
+        args: [ --pytest-test-first ]
+        exclude: ^src/tests/(settings\.py|app/[a-zA-Z0-9_]+\.py)$ # exclude settings and test app
+      - id: no-commit-to-branch # prevent commits to main
+        args: [ --branch, main ]
+        always_run: false
+      - id: trailing-whitespace # trims trailing whitespace
+        args: [ --markdown-linebreak-ext=md ] # preserve markdown linebreaks
+  - repo: https://github.com/ambient-innovation/boa-restrictor # Python and Django linting
     rev: v1.12.4
     hooks:
       - id: boa-restrictor
-        args: [--config=pyproject.toml]
+        args: [ --config=pyproject.toml ]
         exclude: |
           (?x)^(
             /.*/tests/.*
             |.*/test_.*\.py
           )$
-  - repo: https://github.com/jackdewinter/pymarkdown
+  - repo: https://github.com/jackdewinter/pymarkdown # Markdown linting
     rev: v0.9.33
     hooks:
       - id: pymarkdown
-  - repo: https://github.com/RobertCraigie/pyright-python
+  - repo: https://github.com/RobertCraigie/pyright-python # Type checking
     rev: v1.1.407
     hooks:
       - id: pyright
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    # Ruff version.
     rev: v0.14.6
     hooks:
-      # Run the linter.
-      - id: ruff-check
-      # Run the formatter.
-      - id: ruff-format
+      - id: ruff-check # Python linter
+      - id: ruff-format # Python formatter

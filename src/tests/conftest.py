@@ -12,7 +12,6 @@ from .app.models import AdminActionsTestModel
 
 @pytest.fixture
 def mock_function() -> mock.MagicMock:
-    # noinspection PyUnusedLocal
     def _empty_function(*args, **kwargs):
         """A no-op function for testing purposes."""
         pass
@@ -36,7 +35,6 @@ def admin(admin_site) -> AdminActionsTestModelAdmin:
     return AdminActionsTestModelAdmin(AdminActionsTestModel, admin_site)
 
 
-# noinspection PyUnusedLocal
 @pytest.fixture
 def model_instance(db, faker) -> Callable[[], AdminActionsTestModel]:
     def _create_instance() -> AdminActionsTestModel:
