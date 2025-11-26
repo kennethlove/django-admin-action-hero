@@ -21,7 +21,7 @@ repos:
         args: [ --fix=lf ]
       - id: name-tests-test # error if tests files don't start with `test_`'
         args: [ --pytest-test-first ]
-        exclude: ^src/tests/[settings\.py|app/[a-zA-Z0-9_]+\.py] # exclude settings and test app
+        exclude: ^src/tests/(settings\.py|app/[a-zA-Z0-9_]+\.py)$ # exclude settings and test app
       - id: no-commit-to-branch # prevent commits to main
         args: [ --branch, main ]
         always_run: false
