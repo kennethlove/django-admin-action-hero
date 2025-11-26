@@ -37,9 +37,9 @@ class AdminActionBaseClass(abc.ABC):
 
     :param function: Required. Should be a callable that takes a single model instance as an argument.
     :param condition: Optional. If provided, it should be a callable that takes a model
-        instance and returns a boolean indicating whether to queue the task for that record.
+        instance and returns a Boolean indicating whether to queue the task for that record.
     :param name: Optional. If provided, it will be used as the action's name in the admin
-        interface. If it is omitted, the name of the function will be used instead.
+        interface. If it is omitted, the function name will be used instead.
     """
 
     @abc.abstractmethod
@@ -101,7 +101,7 @@ class AdminActionBaseClass(abc.ABC):
         condition: Condition | None = None,
         name: str | None = None,
     ) -> None:
-        """Initializes the action with a function and optional condition.
+        """Initializes the action with a function and an optional condition.
 
         :param function: Required. Should be a callable that takes a single model instance.
         :param condition: Optional. If provided, it should be a callable that takes a model instance and returns a
