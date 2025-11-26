@@ -27,6 +27,11 @@ dev = [
     "pytest-django>=4.11.1",
     "pytest-randomly>=4.0.1",
 ]
+docs = [
+    "sphinx>=8.2.3",
+    "sphinx-notfound-page>=1.1.0",
+    "sphinx-rtd-theme>=3.0.2",
+]
 
 [project.optional-dependencies]
 celery = [
