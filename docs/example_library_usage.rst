@@ -1,12 +1,13 @@
-.. highlight:: python3
 Example Library Usage
 #####################
 
+.. highlight:: python3
+
 We need an admin action that will take a batch of records, selected in the admin, make sure
 each record is valid, and then spawn a background task, for each record, that will apply our
-custom processing function to it. You may need this same kind of action in multiple admins or
-even projects. `django-admin-actions` helps you to avoid this repetition by giving you classes
-to handle common scenarios and an abstract base class to use for your own custom action types.
+custom processing function to it. We may need this same kind of action in multiple admins or
+even projects. `django-admin-actions` helps us avoid this repetition by giving us classes to
+handle common scenarios and an abstract base class to use for our own custom action types.
 
 First, let's define a simple background task using Celery. This task will perform the processing
 on each record. In this case, we're just going to simulate processing with a print statement.
@@ -20,7 +21,6 @@ on each record. In this case, we're just going to simulate processing with a pri
     def process_record(record_id):
         # Simulate processing the record
         print(f"Processing record {record_id}")
-
 
 .. admonition:: Important
     :class: important
@@ -40,6 +40,7 @@ invalid ones. We can do any validation we need here but we must keep in mind tha
 be blocking the admin action until it completes, so we should avoid long-running operations.
 
 ::
+
     # action_filters.py
     def is_valid_record(record):
         # Example validation logic

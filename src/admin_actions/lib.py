@@ -49,7 +49,7 @@ class AdminActionBaseClass(abc.ABC):
         This method will be called for each item in the queryset that passes the condition. Any
         subclass must implement this method to define how to process each item.
 
-        NOTE: This method _is not_ asynchronous or in another thread/process; large quantities of
+        NOTE: This method *is not* asynchronous or in another thread/process; large quantities of
         work should be done in other ways or places, not solely in this method.
 
         :param item: The model instance being processed.
