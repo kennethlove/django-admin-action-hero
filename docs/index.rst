@@ -1,7 +1,11 @@
 django-admin-actions
 ####################
 
-`django-admin-actions` is a small library to simplify the creation of custom admin actions.
+`django-admin-actions` is a small library to simplify the creation of custom
+
+:external:django:ref:`django.contrib.admin.ModelAdmin.actions`
+
+admin actions.
 Creating admin actions isn't necessarily difficult, but often they require some boilerplate
 code, especially when dealing with long-running tasks or message queuing.
 
@@ -16,5 +20,5 @@ for creating your own action classes.
     :maxdepth: 1
     :caption: Contents:
 
-    Example Library Usage <example_usage>
+    Example Library Usage <example_library_usage>
     Library modules<modules>
