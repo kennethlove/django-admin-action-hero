@@ -12,7 +12,7 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "django<=4.2"
+    "django>=4.2"
 ]
 
 [dependency-groups]
