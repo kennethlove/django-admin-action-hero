@@ -5,29 +5,48 @@ repos:
   - repo: "https://github.com/pre-commit/pre-commit-hooks"
     rev: v6.0.0
     hooks:
-      - id: check-added-large-files # prevents giant files from being committed
-      - id: check-ast # checks python files for simple parse errors
-      - id: check-builtin-literals # prevents from adding binary literals
-      - id: check-case-conflict # no file names that would conflict in case-insensitive filesystems
-      - id: check-illegal-windows-names # no file names that cannot be created on Windows
-      - id: check-merge-conflict # error on merge conflict strings
-      - id: check-toml # checks toml files for parse errors
-      - id: check-yaml # checks yaml files for parse errors
-      - id: debug-statements # error on debugger imports and `breakpoint()` calls
-      - id: detect-private-key # prevent secrets from being committed
-      - id: end-of-file-fixer # ensures files end with a newline
-      - id: forbid-submodules # prevents adding git submodules
-      - id: mixed-line-ending # normalize all line endings to LF
+      # prevents giant files from being committed
+      - id: check-added-large-files
+      # checks python files for simple parse errors
+      - id: check-ast
+      # prevents from adding binary literals
+      - id: check-builtin-literals
+      # no file names that would conflict in case-insensitive filesystems
+      - id: check-case-conflict
+      # no file names that cannot be created on Windows
+      - id: check-illegal-windows-names
+      # error on merge conflict strings
+      - id: check-merge-conflict
+      # checks toml files for parse errors
+      - id: check-toml
+      # checks yaml files for parse errors
+      - id: check-yaml
+      # error on debugger imports and `breakpoint()` calls
+      - id: debug-statements
+      # prevent secrets from being committed
+      - id: detect-private-key
+      # ensures files end with a newline
+      - id: end-of-file-fixer
+      # prevents adding git submodules
+      - id: forbid-submodules
+      # normalize all line endings to LF
+      - id: mixed-line-ending
         args: [ --fix=lf ]
-      - id: name-tests-test # error if tests files don't start with `test_`'
+      # error if tests files don't start with `test_`'
+      - id: name-tests-test
         args: [ --pytest-test-first ]
-        exclude: ^src/tests/(settings\.py|app/[a-zA-Z0-9_]+\.py)$ # exclude settings and test app
-      - id: no-commit-to-branch # prevent commits to main
+        # exclude settings and test app
+        exclude: ^src/tests/(settings\.py|app/[a-zA-Z0-9_]+\.py)$
+      # prevent commits to main
+      - id: no-commit-to-branch
         args: [ --branch, main ]
         always_run: false
-      - id: trailing-whitespace # trims trailing whitespace
-        args: [ --markdown-linebreak-ext=md ] # preserve markdown linebreaks
-  - repo: https://github.com/ambient-innovation/boa-restrictor # Python and Django linting
+      # trims trailing whitespace
+      - id: trailing-whitespace
+        # preserve markdown linebreaks
+        args: [ --markdown-linebreak-ext=md ]
+  # Python and Django linting
+  - repo: https://github.com/ambient-innovation/boa-restrictor
     rev: v1.12.4
     hooks:
       - id: boa-restrictor
@@ -37,16 +56,20 @@ repos:
             /.*/tests/.*
             |.*/test_.*\.py
           )$
-  - repo: https://github.com/jackdewinter/pymarkdown # Markdown linting
+  # Markdown linting
+  - repo: https://github.com/jackdewinter/pymarkdown
     rev: v0.9.33
     hooks:
       - id: pymarkdown
-  - repo: https://github.com/RobertCraigie/pyright-python # Type checking
+  # Type checking
+  - repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.407
     hooks:
       - id: pyright
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.14.6
     hooks:
-      - id: ruff-check # Python linter
-      - id: ruff-format # Python formatter
+      # Python linter
+      - id: ruff-check
+      # Python formatter
+      - id: ruff-format
