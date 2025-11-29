@@ -24,6 +24,7 @@ class AdminActionBaseClass(abc.ABC):
 
         class MyAdminAction(AdminActionBaseClass):
             def handle_item(self, item):
+                self.funtion(item)
                 print(f"{item.pk} has been handled.")
                 
         conditional_action = MyAdminAction(
