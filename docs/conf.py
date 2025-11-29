@@ -1,5 +1,6 @@
 project = "django-admin-actions"
 author = "klove"
+copyright = "2025-%Y, klove"
 version = "1.0.0"
 release = "1.0.0"
 
@@ -16,9 +17,9 @@ apidoc_modules = [
 ]
 
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/3/", None),
-    "django": ("https://docs.djangoproject.com/en/4.2/", None),
-    "celery": ("https://docs.celeryproject.org/en/stable/", None),
+    "python": ("https://docs.python.org/3", None),
+    "django": ("https://docs.djangoproject.com/en/4.2", None),
+    "celery": ("https://docs.celeryproject.org/en/stable", None),
 }
 intersphinx_disabled_reftypes = ["*"]
 
