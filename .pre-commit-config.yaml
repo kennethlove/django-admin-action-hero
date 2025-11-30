@@ -36,7 +36,7 @@ repos:
       - id: name-tests-test
         args: [ --pytest-test-first ]
         # exclude settings and test app
-        exclude: ^src/tests/(settings\.py|app/[a-zA-Z0-9_]+\.py)$
+        exclude: ^tests/(settings\.py|app/[a-zA-Z0-9_]+\.py)$
       # prevent commits to main
       - id: no-commit-to-branch
         args: [ --branch, main ]
