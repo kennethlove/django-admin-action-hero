@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         # Test currently supported Python versions
-        python-version: [ "3.11", "3.12", "3.13" ]
+        python-version: [ "3.12", "3.13", "3.14" ]
         # Test current LTS versions of Django
         django-version: [ "4.2", "5.2" ]
 
