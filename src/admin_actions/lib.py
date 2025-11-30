@@ -23,10 +23,10 @@ class AdminActionBaseClass(abc.ABC):
     Example usage::
 
         class MyAdminAction(AdminActionBaseClass):
-            ...
-            def handle_item(self, obj):
-                ...
-
+            def handle_item(self, item):
+                self.funtion(item)
+                print(f"{item.pk} has been handled.")
+                
         conditional_action = MyAdminAction(
             function=my_function,
             condition=lambda record: record.should_process(),
