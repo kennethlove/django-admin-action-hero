@@ -26,7 +26,7 @@ class AdminActionBaseClass(abc.ABC):
             def handle_item(self, item):
                 self.funtion(item)
                 print(f"{item.pk} has been handled.")
-                
+
         conditional_action = MyAdminAction(
             function=my_function,
             condition=lambda record: record.should_process(),

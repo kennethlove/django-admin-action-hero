@@ -1,5 +1,7 @@
 from collections.abc import Callable, Mapping
+from typing import Any, Generator
 from unittest import mock
+from unittest.mock import MagicMock, AsyncMock
 
 import pytest
 from django.contrib.admin import AdminSite
@@ -33,6 +35,13 @@ def admin_site() -> AdminSite:
 @pytest.fixture
 def admin(admin_site) -> AdminActionsTestModelAdmin:
     return AdminActionsTestModelAdmin(AdminActionsTestModel, admin_site)
+
+
+@pytest.fixture
+def mock_messages(admin) -> Generator[MagicMock | AsyncMock, Any, None]:
+    mock_messages = mock.patch("admin_actions.lib.ModelAdmin.message_user").start()
+    yield mock_messages
+    mock_messages.stop()
 
 
 @pytest.fixture
