@@ -1,5 +1,8 @@
+from unittest import mock
+
 import pytest
 from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
+from django.db.models import Model
 
 from admin_actions.lib import AdminActionBaseClass
 from tests.app.models import AdminActionsTestModel
@@ -51,16 +54,24 @@ def test_generated_action_is_callable(
     admin,
     model_instance,
     mock_function,
+    mock_messages,
     _request,
 ):
     """Using the action in the Admin should call the provided function."""
-    instance = model_instance()
-    r = _request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]})
+    instance1 = model_instance()
+    instance2 = model_instance()
+    r = _request("post", data={ACTION_CHECKBOX_NAME: [instance1.pk, instance2.pk]})
 
     queue_action = _AdminAction(mock_function)
     queue_action(admin, r, AdminActionsTestModel.objects.all())
 
-    mock_function.assert_called_once_with(instance.pk)
+    mock_function.assert_has_calls([mock.call(instance1.pk), mock.call(instance2.pk)])
+
+    mock_messages.assert_called_once()
+    message = mock_messages.call_args[0][1]
+    assert (
+        instance1.__class__._meta.verbose_name_plural in message
+    )  # two instances processed
 
 
 @pytest.mark.django_db
@@ -68,6 +79,7 @@ def test_condition_failure_excludes_records(
     admin,
     model_instance,
     mock_function,
+    mock_messages,
     _request,
 ):
     """The condition should exclude all failing records."""
@@ -79,6 +91,7 @@ def test_condition_failure_excludes_records(
 
     # Every record was rejected, no tasks should be delayed
     mock_function.assert_not_called()
+    mock_messages.assert_not_called()
 
 
 @pytest.mark.django_db
@@ -86,10 +99,11 @@ def test_condition_result_determines_record_inclusion(
     admin,
     model_instance,
     mock_function,
+    mock_messages,
     _request,
 ):
     """The condition should include and exclude appropriately."""
-    instance = model_instance()
+    instance: Model = model_instance()
     model_instance()  # A second instance that should be excluded
     r = _request("post", data={ACTION_CHECKBOX_NAME: [instance.pk]})
 
@@ -101,6 +115,10 @@ def test_condition_result_determines_record_inclusion(
 
     # The record met the condition, a task should be delayed
     mock_function.assert_called_once_with(instance.pk)
+
+    mock_messages.assert_called_once()
+    message = mock_messages.call_args[0][1]
+    assert instance.__class__._meta.verbose_name in message  # one instance processed
 
 
 def test_noncallable_condition_raises():

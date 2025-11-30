@@ -52,17 +52,22 @@ If your contribution requires code changes, please ensure that you follow these
 steps:
 
 1. Fork the repository.
-2. Set up git pre-commit hooks. (I recommend [`prek`](https://github.com/j178/prek) for this)
-3. Create a virtual environment and install dependencies. (I recommend using [`uv`](https://docs.astral.sh/uv/).)
-4. Run tests to ensure everything is working. You'll use `pytest` for writing and running tests.
+2. Set up git pre-commit hooks. (I recommend
+   [`prek`](https://github.com/j178/prek) for this)
+3. Create a virtual environment and install dependencies. (I recommend using
+   [`uv`](https://docs.astral.sh/uv/).)
+4. Run tests to ensure everything is working. You'll use `pytest` for writing
+   and running tests.
 
 Once you have everything working, follow these steps to submit your changes:
 
 1. Create a feature branch.
 2. Make your changes.
-   Changes should follow the existing code style, include docstrings, and be type-hinted.
+   Changes should follow the existing code style, include docstrings, and be
+   type-hinted.
 3. Test your changes.
-   All tests must pass, of course. Try to cover your new code as much as possible. Tests should cover all branches.
+   All tests must pass, of course. Try to cover your new code as much as
+   possible. Tests should cover all branches.
 4. Commit your changes, passing all checks.
 5. Push to the branch.
 6. Create a pull request.
