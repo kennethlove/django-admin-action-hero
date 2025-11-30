@@ -19,7 +19,7 @@ apidoc_modules = [
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "django": ("https://docs.djangoproject.com/en/4.2", None),
-    "celery": ("https://docs.celeryproject.org/en/stable", None),
+    "celery": ("https://docs.celeryq.dev/en/stable/", None),
 }
 intersphinx_disabled_reftypes = ["*"]
 
