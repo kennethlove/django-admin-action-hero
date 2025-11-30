@@ -57,13 +57,12 @@ venvPath = "."
 venv = ".venv"
 
 [tool.pytest.ini_options]
-minversion = "6.0"
 addopts = "--randomly-seed=last --cov=admin_actions --cov-report=term-missing"
 django_find_project = false
 DJANGO_SETTINGS_MODULE = "tests.settings"
-testpaths = [
-    "src/tests",
-]
+minversion = "6.0"
+pythonpath = [".", "src"]
+testpaths = ["tests" ]
 
 [tool.ruff.lint]
 # Avoiding flagging and removing any codes starting with `PBR` from any
