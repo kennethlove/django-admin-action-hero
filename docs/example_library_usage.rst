@@ -24,7 +24,7 @@ simulate processing with a ``print()`` call.
     @shared_task
     def process_record(record_id):
         # Simulate processing the record
-        print(f"Processing record {}")
+        print(f"Processing record {record_id}")
 
 .. admonition:: Important
     :class: important
