@@ -9,13 +9,13 @@ and organization.
 
 ## Installation
 
-To install `django_admin_actions`, you'll use `pip install django_admin_actions`
-or add `django_admin_actions` to your `pyproject.toml` or `requirements.txt`.
+To install `django_admin_actions`, you'll use `pip install django-admin-actions`
+or add `django-admin-actions` to your `pyproject.toml` or `requirements.txt`.
 You don't need to add anything to your `INSTALLED_APPS`.
 
 ## Usage
 
-An example of how to use `django_admin_actions` to create a simple admin action:
+An example of how to use `django-admin-actions` to create a simple admin action:
 
 ```py
 from django.contrib import admin
@@ -40,7 +40,7 @@ that executes `my_admin_function` for each selected item.
 
 ## Contributing
 
-Thanks for wanting to contribute to `django_admin_actions`! Contributions are
+Thanks for wanting to contribute to `django-admin-actions`! Contributions are
 always welcome (even if they may not all be accepted). Here's how you can help:
 
 * Improve documentation.
@@ -60,7 +60,9 @@ Once you have everything working, follow these steps to submit your changes:
 
 1. Create a feature branch.
 2. Make your changes.
+   Changes should follow the existing code style, include docstrings, and be type-hinted.
 3. Test your changes.
+   All tests must pass, of course. Try to cover your new code as much as possible. Tests should cover all branches.
 4. Commit your changes, passing all checks.
 5. Push to the branch.
 6. Create a pull request.

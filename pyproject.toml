@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "admin-actions"
+name = "django-admin-actions"
 dynamic = ["version"]
 description = """
 Django admin actions made more generic.
@@ -49,6 +49,9 @@ exclude = [
     "PBR001"
 ]
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/admin_actions"]
+
 [tool.hatch.version]
 path = "src/admin_actions/__init__.py"
 
@@ -57,7 +60,7 @@ venvPath = "."
 venv = ".venv"
 
 [tool.pytest.ini_options]
-addopts = "--randomly-seed=last --cov=admin_actions --cov-report=term-missing"
+addopts = "--randomly-seed=last --cov=admin_actions --cov-report=term-missing --cov-branch"
 django_find_project = false
 DJANGO_SETTINGS_MODULE = "tests.settings"
 minversion = "6.0"
