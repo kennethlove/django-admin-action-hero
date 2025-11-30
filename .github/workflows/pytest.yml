@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Test all currently supported Python versions
-        python-version: [ "3.13", "3.12", "3.11", "3.10" ]
-        # Only test LTS versions of Django
+        # Test currently supported Python versions
+        python-version: [ "3.11", "3.12", "3.13" ]
+        # Test current LTS versions of Django
         django-version: [ "4.2", "5.2" ]
 
     steps:
