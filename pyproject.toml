@@ -4,13 +4,19 @@ build-backend = "hatchling.build"
 
 [project]
 name = "admin-actions"
-version = "0.1.0"
-description = "Add your description here"
+dynamic = ["version"]
+description = """
+Django admin actions made more generic.
+
+Easily create reusable admin actions for common tasks. Provides two usable
+implementations and an ABC for creating your own implementations.
+"""
+license = { file = "LICENSE" }
 readme = "README.md"
 authors = [
     { name = "Kenneth Love", email = "11908+kennethlove@users.noreply.github.com" }
 ]
-requires-python = ">=3.13"
+requires-python = ">=3.10"
 dependencies = [
     "django>=4.2.26", # Current 4.x LTS release as of 25/11/2025
 ]
@@ -20,7 +26,7 @@ dev = [
     "celery-types==0.23.0",
     "django-stubs>=5.2.7",
     "faker>=38.2.0",
-    "hatchling>=1.27.0",
+    "hatchling>=1.28.0",
     "pytest>=9.0.1",
     "pytest-celery>=1.2.1",
     "pytest-cov>=7.0.0",
@@ -43,6 +49,13 @@ exclude = [
     "PBR001"
 ]
 
+[tool.hatch.version]
+path = "src/admin_actions/__init__.py"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "--randomly-seed=last --cov=admin_actions --cov-report=term-missing"
@@ -51,10 +64,6 @@ DJANGO_SETTINGS_MODULE = "tests.settings"
 testpaths = [
     "src/tests",
 ]
-
-[tool.pyright]
-venvPath = "."
-venv = ".venv"
 
 [tool.ruff.lint]
 # Avoiding flagging and removing any codes starting with `PBR` from any
