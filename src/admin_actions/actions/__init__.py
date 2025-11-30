@@ -1,7 +1,7 @@
-from .simple import SimpleAdminAction
+from .simple import SimpleAction
 
 __all__ = [
-    "SimpleAdminAction",
+    "SimpleAction",
 ]
 
 # Guard import for Celery integration

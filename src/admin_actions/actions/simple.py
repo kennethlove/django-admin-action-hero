@@ -3,7 +3,7 @@
 from admin_actions.lib import AdminActionBaseClass
 
 
-class SimpleAdminAction(AdminActionBaseClass):
+class SimpleAction(AdminActionBaseClass):
     """Generates an admin action for calling a function for a chosen set of records.
 
     This is the simplest possible implementation of AdminActionBaseClass. It only calls the
