@@ -16,7 +16,7 @@ readme = "README.md"
 authors = [
     { name = "Kenneth Love", email = "11908+kennethlove@users.noreply.github.com" }
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "django>=4.2.26", # Current 4.x LTS release as of 25/11/2025
 ]
