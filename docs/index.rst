@@ -31,12 +31,12 @@ use them as examples for creating your own action classes.
 
     How to use existing action classes <example_library_usage>
     How to create your own action classes <example_custom_actions>
-    Library module reference <modules>
+    Library module reference <api/modules>
 
 Installation
 ------------
 
-To install ``django_admin_actions``, you'll use
+To install ``django-admin-actions``, you'll use
 ``pip install django-admin-actions`` or add ``django-admin-actions`` to your
 ``pyproject.toml`` or ``requirements.txt``. You don't need to add anything to
 your ``INSTALLED_APPS`` to use this library.

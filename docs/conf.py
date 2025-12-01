@@ -1,8 +1,8 @@
 project = "django-admin-actions"
 author = "klove"
 copyright = "2025-%Y, klove"
-version = "1.0.0"
-release = "1.0.0"
+version = "0.1.0"
+release = "0.1.0"
 
 extensions = [
     "sphinx.ext.apidoc",
@@ -11,8 +11,9 @@ extensions = [
 apidoc_modules = [
     {
         "path": "../src/admin_actions/",
-        "destination": "dist/",
+        "destination": "api/",
         "apidoc_module_first": True,
+        "apidoc_separate_modules": True,
     }
 ]
 
