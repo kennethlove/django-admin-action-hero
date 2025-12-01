@@ -20,6 +20,38 @@ requires-python = ">=3.12"
 dependencies = [
     "django>=4.2.26", # Current 4.x LTS release as of 25/11/2025
 ]
+keywords = [
+    "django",
+    "celery",
+    "task",
+    "admin",
+    "action"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.2",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed"
+]
+
+[project.optional-dependencies]
+celery = [
+    "celery>=5.5.3",
+]
+
+[project.urls]
+Documentation = "https://django-admin-actions.readthedocs.io/en/latest/"
+Repository = "https://github.com/kennethlove/django-admin-actions"
 
 [dependency-groups]
 dev = [
@@ -39,15 +71,13 @@ docs = [
     "sphinx-rtd-theme>=3.0.2",
 ]
 
-[project.optional-dependencies]
-celery = [
-    "celery>=5.5.3",
-]
-
 [tool.boa-restrictor]
 exclude = [
     "PBR001"
 ]
+
+[tool.hatch.build]
+skip-excluded-dirs = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/admin_actions"]
