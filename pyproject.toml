@@ -56,7 +56,7 @@ Repository = "https://github.com/kennethlove/django-admin-actions"
 [dependency-groups]
 dev = [
     "celery-types==0.23.0",
-    "django-stubs>=5.2.7",
+    "django-stubs>=5.2.8",
     "faker>=38.2.0",
     "hatchling>=1.28.0",
     "pytest>=9.0.1",
@@ -68,7 +68,6 @@ dev = [
 docs = [
     "sphinx>=8.2.3",
     "sphinx-notfound-page>=1.1.0",
-    "sphinx-rtd-theme>=3.0.2",
 ]
 
 [tool.boa-restrictor]
