@@ -9,7 +9,7 @@ and organization.
 
 ## Installation
 
-To install `django_admin_actions`, you'll use `pip install django-admin-actions`
+To install `django-admin-actions`, you'll use `pip install django-admin-actions`
 or add `django-admin-actions` to your `pyproject.toml` or `requirements.txt`.
 You don't need to add anything to your `INSTALLED_APPS`.
 
@@ -22,9 +22,11 @@ from django.contrib import admin
 
 from admin_actions.actions import SimpleAction
 
+
 def my_admin_function(item_pk):
     # Your admin action logic here
     pass
+
 
 class MyAdmin(admin.ModelAdmin):
     actions = [

@@ -29,22 +29,22 @@ use them as examples for creating your own action classes.
     :maxdepth: 1
     :caption: Contents:
 
-    Example library usage <example_library_usage>
-    Example custom actions <example_custom_actions>
+    How to use existing action classes <example_library_usage>
+    How to create your own action classes <example_custom_actions>
     Library module reference <modules>
 
 Installation
 ------------
 
 To install ``django_admin_actions``, you'll use
-``pip install django_admin_actions`` or add ``django_admin_actions`` to your
+``pip install django-admin-actions`` or add ``django-admin-actions`` to your
 ``pyproject.toml`` or ``requirements.txt``. You don't need to add anything to
 your ``INSTALLED_APPS`` to use this library.
 
 Contributing
 ------------
 
-Thanks for wanting to contribute to ``django_admin_actions``! Contributions are
+Thanks for wanting to contribute to ``django-admin-actions``! Contributions are
 always welcome (even if they may not all be accepted). Here's how you can help:
 
 * Improve documentation.
@@ -68,7 +68,11 @@ Once you have everything working, follow these steps to submit your changes:
 
 1. Create a feature branch.
 2. Make your changes.
+   Changes should follow the existing code style, include docstrings, and be
+   type-hinted.
 3. Test your changes.
+   All tests must pass, of course. Try to cover your new code as much as
+   possible. Tests should cover all branches.
 4. Commit your changes, passing all checks.
 5. Push to the branch.
 6. Create a pull request.
