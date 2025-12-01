@@ -99,32 +99,44 @@ class AdminActionBaseClass(abc.ABC):
                 messages.SUCCESS,
             )
 
+    
     def __init__(
         self,
         function: Function,
         *,
         condition: Condition | None = None,
         name: str | None = None,
+        short_description: str | None = None,
     ) -> None:
-        """Initializes the action with a function and an optional condition.
+        """
+        Initializes the action with a function and an optional condition.
 
-        :param function: Required. Should be a callable that takes a single model instance.
-        :param condition: Optional. If provided, it should be a callable that takes a model instance and returns a
-            Boolean indicating whether to queue the task for that record.
-        :param name: Optional. If provided, will be used as the action's name in the admin interface.
+        :param function: Callable that takes a model instance.
+        :param condition: Optional callable for whether to process each record.
+        :param name: Optional internal identifier used by Django admin.
+        :param short_description: Optional user-facing label shown in the Django admin dropdown.
         """
 
         if condition is not None:
-            if isinstance(condition, Callable):  # Cannot call a non-callable condition
+            if isinstance(condition, Callable):
                 self.condition = condition
             else:
                 raise TypeError("The condition must be a callable.")
         else:
-            self.condition = lambda _: True  # The default condition always returns True
+            self.condition = lambda _: True
 
-        if not callable(function):  # Cannot call a non-callable task
+        if not callable(function):
             raise TypeError("The function must be a callable.")
 
-        self.name = name
         self.function = function
-        self.__name__ = name if name else function.__name__
+
+        # Internal action identifier
+        self.name = name or function.__name__          
+        self.__name__ = self.name                      
+
+        # Human-readable label for admin dropdown
+        if short_description is not None:
+            self.short_description = short_description
+        else:
+            # Fallback consistent with Django conventions
+            self.short_description = self.name.replace("_", " ")
