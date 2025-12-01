@@ -25,7 +25,7 @@ jobs:
           path: dist/
 
   publish-to-pypi:
-    name: Publish distribution to PyPI
+    name: PyPI publication
     # Only publish to PyPI on tag pushes.
     if: startsWith(github.ref, 'refs/tags/')
     needs:
@@ -49,7 +49,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
 
   publish-to-testpypi:
-    name: Publish distribution to TestPyPI
+    name: TestPyPI publication
     needs:
       - build
     runs-on: ubuntu-latest
