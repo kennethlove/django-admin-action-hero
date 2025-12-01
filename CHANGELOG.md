@@ -11,29 +11,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Base class and first implementation, plus tests.
 - Simple implementation.
-- Converted AdminActionBaseClass into an ABC. ([#1](https://github.com/kennethlove/django-admin-actions/issues/1))
+- Converted AdminActionBaseClass into an ABC. ([#1](https://github.com/kennethlove/django-admin-action-hero/issues/1))
 - Celery enqueuing action.
-- Guard the use of celery-requiring features. ([#5](https://github.com/kennethlove/django-admin-actions/issues/5))
+- Guard the use of celery-requiring features. ([#5](https://github.com/kennethlove/django-admin-action-hero/issues/5))
 
 ### <!-- 1 -->🐛 Bug Fixes
 
-- Fixes issues in `main` ([#8](https://github.com/kennethlove/django-admin-actions/issues/8))
-- Rename package from `django_admin_actions` -> `django-admin-actions`
+- Fixes issues in `main` ([#8](https://github.com/kennethlove/django-admin-action-hero/issues/8))
+- Rename package from `django_admin_actions` -> `django-admin-action-hero`
 - Adjust exclusion path for name-tests-test rule
 
 ### <!-- 10 -->💼 Other
 
 - Add pytest fixtures and update tests for celery admin actions
 - Add GitHub action for tests and coverage
-- PR # [4](https://github.com/kennethlove/django-admin-actions/pull/4): Add
+- PR # [4](https://github.com/kennethlove/django-admin-action-hero/pull/4): Add
   pre-commit hooks to repo.
-- Improvements for tests. ([#9](https://github.com/kennethlove/django-admin-actions/issues/9))
-- Update lib.py ([#14](https://github.com/kennethlove/django-admin-actions/issues/14))
-- Update lib.py ([#15](https://github.com/kennethlove/django-admin-actions/issues/15))
-- Documentation ([#11](https://github.com/kennethlove/django-admin-actions/issues/11))
-- Pre-launch fixes ([#22](https://github.com/kennethlove/django-admin-actions/issues/22))
+- Improvements for tests. ([#9](https://github.com/kennethlove/django-admin-action-hero/issues/9))
+- Update lib.py ([#14](https://github.com/kennethlove/django-admin-action-hero/issues/14))
+- Update lib.py ([#15](https://github.com/kennethlove/django-admin-action-hero/issues/15))
+- Documentation ([#11](https://github.com/kennethlove/django-admin-action-hero/issues/11))
+- Pre-launch fixes ([#22](https://github.com/kennethlove/django-admin-action-hero/issues/22))
 - Prek updates
-- More pre-release updates ([#24](https://github.com/kennethlove/django-admin-actions/issues/24))
+- More pre-release updates ([#24](https://github.com/kennethlove/django-admin-action-hero/issues/24))
 
 ### <!-- 3 -->📚 Documentation
 

@@ -3,7 +3,7 @@ from unittest import mock
 import pytest
 from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 
-from admin_actions.actions import QueueCeleryAction
+from action_hero.actions import QueueCeleryAction
 from tests.app.models import AdminActionsTestModel
 
 
@@ -71,21 +71,21 @@ def test_non_celery_task_raises():
 
 
 def test_celery_not_available(monkeypatch):
-    """Without Celery installed, `from admin_actions.actions import *` should not include `QueueCeleryAction`."""
+    """Without Celery installed, `from action_hero.actions import *` should not include `QueueCeleryAction`."""
     import sys
     from importlib import reload
 
-    if "admin_actions.actions" in sys.modules:
-        del sys.modules["admin_actions.actions"]
-    if "admin_actions.actions.queue_celery" in sys.modules:
-        del sys.modules["admin_actions.actions.queue_celery"]
+    if "action_hero.actions" in sys.modules:
+        del sys.modules["action_hero.actions"]
+    if "action_hero.actions.queue_celery" in sys.modules:
+        del sys.modules["action_hero.actions.queue_celery"]
 
     monkeypatch.setitem(sys.modules, "celery", None)
 
-    import admin_actions.actions
+    import action_hero.actions
 
-    reload(admin_actions.actions)
-    assert "QueueCeleryAction" not in admin_actions.actions.__all__
+    reload(action_hero.actions)
+    assert "QueueCeleryAction" not in action_hero.actions.__all__
 
 
 def test_celery_not_available_raises(monkeypatch):
@@ -93,14 +93,14 @@ def test_celery_not_available_raises(monkeypatch):
     import sys
     from importlib import reload
 
-    if "admin_actions.actions.queue_celery" in sys.modules:
-        del sys.modules["admin_actions.actions.queue_celery"]
+    if "action_hero.actions.queue_celery" in sys.modules:
+        del sys.modules["action_hero.actions.queue_celery"]
 
     monkeypatch.setitem(sys.modules, "celery", None)
 
     with pytest.raises(
         ImportError, match="Celery integration requires celery to be installed"
     ):
-        import admin_actions.actions.queue_celery
+        import action_hero.actions.queue_celery
 
-        reload(admin_actions.actions.queue_celery)
+        reload(action_hero.actions.queue_celery)

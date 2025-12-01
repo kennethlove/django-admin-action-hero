@@ -1,5 +1,5 @@
-admin\_actions package
-======================
+action\_hero package
+====================
 
 Subpackages
 -----------
@@ -7,15 +7,15 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   admin_actions.actions
+   action_hero.actions
 
 Submodules
 ----------
 
-admin\_actions.lib module
--------------------------
+action\_hero.lib module
+-----------------------
 
-.. automodule:: admin_actions.lib
+.. automodule:: action_hero.lib
    :members:
    :show-inheritance:
    :undoc-members:
@@ -23,7 +23,7 @@ admin\_actions.lib module
 Module contents
 ---------------
 
-.. automodule:: admin_actions
+.. automodule:: action_hero
    :members:
    :show-inheritance:
    :undoc-members:

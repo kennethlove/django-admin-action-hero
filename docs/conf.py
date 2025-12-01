@@ -1,4 +1,4 @@
-project = "django-admin-actions"
+project = "django-admin-action-hero"
 author = "klove"
 copyright = "2025-%Y, klove"
 version = "0.1.0"
@@ -10,7 +10,7 @@ extensions = [
 ]
 apidoc_modules = [
     {
-        "path": "../src/admin_actions/",
+        "path": "../src/action_hero/",
         "destination": "api/",
         "apidoc_module_first": True,
         "apidoc_separate_modules": True,

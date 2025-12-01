@@ -1,7 +1,7 @@
-admin_actions
-=============
+action_hero
+===========
 
 .. toctree::
    :maxdepth: 4
 
-   admin_actions
+   action_hero

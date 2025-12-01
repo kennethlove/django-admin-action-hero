@@ -315,7 +315,7 @@ wheels = [
 ]
 
 [[package]]
-name = "django-admin-actions"
+name = "django-admin-action-hero"
 source = { editable = "." }
 dependencies = [
     { name = "django" },

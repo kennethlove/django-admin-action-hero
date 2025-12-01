@@ -6,10 +6,10 @@ try:
 except ImportError as e:
     raise ImportError(
         "Celery integration requires celery to be installed. "
-        "Install it with: pip install admin-actions[celery]"
+        "Install it with: pip install django-admin-action-hero[celery]"
     ) from e
 
-from admin_actions.lib import AdminActionBaseClass, Condition
+from action_hero.lib import AdminActionBaseClass, Condition
 
 
 class QueueCeleryAction(AdminActionBaseClass):

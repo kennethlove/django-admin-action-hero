@@ -7,7 +7,7 @@ We need an admin action that will take a batch of records, selected in the
 admin, make sure each record is valid, and then spawn a background task, for
 each record, that will apply our custom processing function to it. We may need
 this same kind of action in multiple admins or even projects.
-``django-admin-actions`` helps us avoid this repetition by giving us classes to
+``django-admin-action-hero`` helps us avoid this repetition by giving us classes to
 handle common scenarios and an abstract base class to use for our own custom
 action types.
 

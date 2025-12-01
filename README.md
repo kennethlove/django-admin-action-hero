@@ -1,26 +1,26 @@
-# django_admin_actions
+# django-admin-action-hero
 
-`django_admin_actions` is a library designed to make it easier to create custom
+`django-admin-action-hero` is a library designed to make it easier to create custom
 repetitive admin actions for Django's admin interface. It provides a simple way
 to create classes that encapsulate admin actions, allowing for better code reuse
 and organization.
 
-[Read the full docs](https://django-admin-actions.readthedocs.io/)
+[Read the full docs](https://django-admin-action-hero.readthedocs.io/)
 
 ## Installation
 
-To install `django-admin-actions`, you'll use `pip install django-admin-actions`
-or add `django-admin-actions` to your `pyproject.toml` or `requirements.txt`.
+To install `django-admin-action-hero`, you'll use `pip install django-admin-action-hero`
+or add `django-admin-action-hero` to your `pyproject.toml` or `requirements.txt`.
 You don't need to add anything to your `INSTALLED_APPS`.
 
 ## Usage
 
-An example of how to use `django-admin-actions` to create a simple admin action:
+An example of how to use `django-admin-action-hero` to create a simple admin action:
 
 ```py
 from django.contrib import admin
 
-from admin_actions.actions import SimpleAction
+from action_hero.actions import SimpleAction
 
 
 def my_admin_function(item_pk):
@@ -42,7 +42,7 @@ that executes `my_admin_function` for each selected item.
 
 ## Contributing
 
-Thanks for wanting to contribute to `django-admin-actions`! Contributions are
+Thanks for wanting to contribute to `django-admin-action-hero`! Contributions are
 always welcome (even if they may not all be accepted). Here's how you can help:
 
 * Improve documentation.

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "django-admin-actions"
+name = "django-admin-action-hero"
 dynamic = ["version"]
 description = """
 Django admin actions made more generic.
@@ -49,8 +49,8 @@ celery = [
 ]
 
 [project.urls]
-Documentation = "https://django-admin-actions.readthedocs.io/en/latest/"
-Repository = "https://github.com/kennethlove/django-admin-actions"
+Documentation = "https://django-admin-action-hero.readthedocs.io/en/latest/"
+Repository = "https://github.com/kennethlove/django-admin-action-hero"
 
 [dependency-groups]
 dev = [
@@ -78,17 +78,17 @@ exclude = [
 skip-excluded-dirs = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/admin_actions"]
+packages = ["src/action_hero"]
 
 [tool.hatch.version]
-path = "src/admin_actions/__init__.py"
+path = "src/action_hero/__init__.py"
 
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
 
 [tool.pytest.ini_options]
-addopts = "--randomly-seed=last --cov=admin_actions --cov-report=term-missing --cov-branch"
+addopts = "--randomly-seed=last --cov=action_hero --cov-report=term-missing --cov-branch"
 django_find_project = false
 DJANGO_SETTINGS_MODULE = "tests.settings"
 minversion = "6.0"

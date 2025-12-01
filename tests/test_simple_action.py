@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 
-from admin_actions.actions import SimpleAction
+from action_hero.actions import SimpleAction
 from tests.app.models import AdminActionsTestModel
 
 

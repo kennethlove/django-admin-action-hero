@@ -1,7 +1,7 @@
-django-admin-actions
-####################
+django-admin-action-hero
+########################
 
-`django-admin-actions` is a small library to simplify the creation of custom
+`django-admin-action-hero` is a small library to simplify the creation of custom
 :external+django:std:doc:`admin actions <ref/contrib/admin/actions>`.
 
 Creating one-off admin actions isn't difficult. You write a function and put
@@ -10,10 +10,10 @@ occasional action, or every action you write is unique, this library won't be of
 much help for you.
 
 If you find yourself building the same kinds of actions in multiple admins or
-projects, though, `django-admin-actions` is here for you. This library is meant
+projects, though, `django-admin-action-hero` is here for you. This library is meant
 to reduce the boilerplate necessary when writing similar kinds of actions over
 and over. For example, you might write multiple actions to queue different
-Celery tasks for different models. Using `django-admin-actions`, you can reduce
+Celery tasks for different models. Using `django-admin-action-hero`, you can reduce
 most of that work into just writing the tasks you need to run without worrying
 about the action side of the problem.
 
@@ -36,15 +36,15 @@ use them as examples for creating your own action classes.
 Installation
 ------------
 
-To install ``django-admin-actions``, you'll use
-``pip install django-admin-actions`` or add ``django-admin-actions`` to your
+To install ``django-admin-action-hero``, you'll use
+``pip install django-admin-action-hero`` or add ``django-admin-action-hero`` to your
 ``pyproject.toml`` or ``requirements.txt``. You don't need to add anything to
 your ``INSTALLED_APPS`` to use this library.
 
 Contributing
 ------------
 
-Thanks for wanting to contribute to ``django-admin-actions``! Contributions are
+Thanks for wanting to contribute to ``django-admin-action-hero``! Contributions are
 always welcome (even if they may not all be accepted). Here's how you can help:
 
 * Improve documentation.

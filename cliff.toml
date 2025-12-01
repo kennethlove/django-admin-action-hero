@@ -66,13 +66,13 @@ postprocessors = [
     # Replace multiple spaces with a single space.
     { pattern = " +", replace = " " },
     # Replace issue number with link
-    { pattern = "\\(#([0-9]+)\\)", replace = "([#${1}](https://github.com/kennethlove/django-admin-actions/issues/${1}))" },
+    { pattern = "\\(#([0-9]+)\\)", replace = "([#${1}](https://github.com/kennethlove/django-admin-action-hero/issues/${1}))" },
     # Hyperlink PR references in merge commit messages
-    { pattern = "Merge pull request #([0-9]+) from [^ ]+", replace = "PR # [${1}](https://github.com/kennethlove/django-admin-actions/pull/${1}):" },
+    { pattern = "Merge pull request #([0-9]+) from [^ ]+", replace = "PR # [${1}](https://github.com/kennethlove/django-admin-action-hero/pull/${1}):" },
     # Hyperlink commit links, with short commit hash as description
-    { pattern = "https://github.com/kennethlove/django-admin-actions/commit/([a-f0-9]{7})[a-f0-9]*", replace = "commit # [${1}](${0})" },
+    { pattern = "https://github.com/kennethlove/django-admin-action-hero/commit/([a-f0-9]{7})[a-f0-9]*", replace = "commit # [${1}](${0})" },
     # Hyperlink bare commit hashes in commit logs, with short commit hash as description
-    { pattern = "([ \\n])(([a-f0-9]{7})[a-f0-9]*)", replace = "${1}commit # [${3}](https://github.com/kennethlove/django-admin-actions/commit/${2})" },
+    { pattern = "([ \\n])(([a-f0-9]{7})[a-f0-9]*)", replace = "${1}commit # [${3}](https://github.com/kennethlove/django-admin-action-hero/commit/${2})" },
 ]
 # output file path
 output = "CHANGELOG.md"

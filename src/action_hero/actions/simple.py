@@ -1,6 +1,6 @@
 """Provides the simplest possible implementation of AdminActionBaseClass."""
 
-from admin_actions.lib import AdminActionBaseClass
+from action_hero.lib import AdminActionBaseClass
 
 
 class SimpleAction(AdminActionBaseClass):

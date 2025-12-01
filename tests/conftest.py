@@ -39,7 +39,7 @@ def admin(admin_site) -> AdminActionsTestModelAdmin:
 
 @pytest.fixture
 def mock_messages(admin) -> Generator[MagicMock | AsyncMock, Any, None]:
-    mock_messages = mock.patch("admin_actions.lib.ModelAdmin.message_user").start()
+    mock_messages = mock.patch("action_hero.lib.ModelAdmin.message_user").start()
     yield mock_messages
     mock_messages.stop()
 
