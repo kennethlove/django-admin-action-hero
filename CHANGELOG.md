@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pre-launch fixes ([#22](https://github.com/kennethlove/django-admin-action-hero/issues/22))
 - Prek updates
 - More pre-release updates ([#24](https://github.com/kennethlove/django-admin-action-hero/issues/24))
+- Use `type` keyword instead of `TypeAlias`
 
 ### <!-- 3 -->📚 Documentation
 

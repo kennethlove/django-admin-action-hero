@@ -2,17 +2,17 @@
 
 import abc
 from collections.abc import Callable
-from typing import Any, TypeAlias
+from typing import Any
 
 from django.contrib import messages
 from django.contrib.admin import ModelAdmin
 from django.db.models import Model, QuerySet
 from django.http import HttpRequest
 
-Condition: TypeAlias = Callable[
-    [Any], bool
-]  # Condition to enable the function for an item.
-Function: TypeAlias = Callable[[Any], None]  # Function to call for each item.
+# Condition to enable the function for an item.
+type Condition = Callable[[Any], bool]
+# Function to call for each item.
+type Function = Callable[[Any], None]
 
 
 class AdminActionBaseClass(abc.ABC):
