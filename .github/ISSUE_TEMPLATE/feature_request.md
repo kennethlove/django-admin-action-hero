@@ -7,16 +7,29 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always
-frustrated when [...]
+<!--- Provide a general summary of your feature in the Title above -->
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+## Description
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've
-considered.
+<!--- Describe your feature idea in detail -->
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+## Motivation and Context
+
+<!--- Why is this feature required? What problem does it solve? -->
+<!--- If it fixes an open issue, please link to the issue here. -->
+
+## Possible Implementation
+
+<!--- Not obligatory, but suggest an idea for implementing addition or change -->
+
+## Screenshots (if appropriate):
+
+## Additional Details
+
+<!--- Please provide any additional details here -->
+
+## Related Discussion (required)
+
+<!--- All features must start as discussions. Please provide a link to the relevant discussion. Feature requests without a discussion link may be closed. -->
+
+**Discussion link:** <!--- e.g. https://github.com/OWNER/REPO/discussions/1234 -->
