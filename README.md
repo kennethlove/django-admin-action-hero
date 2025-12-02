@@ -39,4 +39,6 @@ class MyAdmin(admin.ModelAdmin):
 ```
 
 Your `MyAdmin` class now has a custom admin action called "my_custom_action"
-that executes `my_admin_function` for each selected item.
+that executes `my_admin_function` for each selected item. You can select the
+items in the Django admin interface and run the action from the actions
+dropdown.
