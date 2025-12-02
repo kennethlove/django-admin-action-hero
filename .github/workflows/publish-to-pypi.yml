@@ -23,11 +23,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.x'
-      - name: Install Hatchling
-        run: python3 -m pip install .[build] --user
+          cache: "pip"
+          pip-install: "hatchling>=1.28.0"
       - name: Build a binary wheel and a source tarball
-        run: hatch build
+        run: hatchling build
       - name: Store artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -81,3 +80,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository_url: https://test.pypi.org/legacy/
+          skip_existing: true
