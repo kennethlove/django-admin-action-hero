@@ -53,11 +53,13 @@ Documentation = "https://django-admin-action-hero.readthedocs.io/en/latest/"
 Repository = "https://github.com/kennethlove/django-admin-action-hero"
 
 [dependency-groups]
+build = [
+    "hatchling>=1.28.0",
+]
 dev = [
     "celery-types==0.23.0",
     "django-stubs>=5.2.8",
     "faker>=38.2.0",
-    "hatchling>=1.28.0",
     "pytest>=9.0.1",
     "pytest-celery>=1.2.1",
     "pytest-cov>=7.0.0",
