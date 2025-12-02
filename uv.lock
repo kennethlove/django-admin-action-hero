@@ -327,11 +327,13 @@ celery = [
 ]
 
 [package.dev-dependencies]
+build = [
+    { name = "hatchling" },
+]
 dev = [
     { name = "celery-types" },
     { name = "django-stubs" },
     { name = "faker" },
-    { name = "hatchling" },
     { name = "pytest" },
     { name = "pytest-celery" },
     { name = "pytest-cov" },
@@ -351,11 +353,11 @@ requires-dist = [
 provides-extras = ["celery"]
 
 [package.metadata.requires-dev]
+build = [{ name = "hatchling", specifier = ">=1.28.0" }]
 dev = [
     { name = "celery-types", specifier = "==0.23.0" },
     { name = "django-stubs", specifier = ">=5.2.8" },
     { name = "faker", specifier = ">=38.2.0" },
-    { name = "hatchling", specifier = ">=1.28.0" },
     { name = "pytest", specifier = ">=9.0.1" },
     { name = "pytest-celery", specifier = ">=1.2.1" },
     { name = "pytest-cov", specifier = ">=7.0.0" },
