@@ -28,7 +28,8 @@ assignees: ''
 
 <!--- Please provide any additional details here -->
 
-## Related Discussion
+## Related Discussion (required)
 
-<!--- Please link to related discussions here: -->
-<!--- All features must start as discussions. -->
+<!--- All features must start as discussions. Please provide a link to the relevant discussion. Feature requests without a discussion link may be closed. -->
+
+**Discussion link:** <!--- e.g. https://github.com/OWNER/REPO/discussions/1234 -->
