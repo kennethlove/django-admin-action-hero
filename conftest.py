@@ -1,6 +1,10 @@
 import os
 
 def pytest_configure(config):
-    # Disable pytest-sugar automatically in CI environments
-    if os.getenv("CI") == "true":
-        config.pluginmanager.set_blocked("pytest_sugar")
+    if os.getenv("CI") != "true":
+        # Local only — try loading pytest_sugar
+        try:
+            config.pluginmanager.import_plugin("pytest_sugar")
+        except ImportError:
+            # Plugin not installed locally — ignore silently
+            pass
