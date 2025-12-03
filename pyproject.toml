@@ -48,6 +48,11 @@ celery = [
     "celery>=5.5.3",
 ]
 
+test = [
+    "pytest>=8.0",
+    "pytest-sugar>=1.0.0",
+]
+
 [project.urls]
 Documentation = "https://django-admin-action-hero.readthedocs.io/en/latest/"
 Repository = "https://github.com/kennethlove/django-admin-action-hero"
