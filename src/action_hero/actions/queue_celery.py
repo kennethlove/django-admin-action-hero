@@ -1,4 +1,5 @@
 """Provides an admin action to queue Celery tasks for selected records."""
+
 from __future__ import annotations
 
 from django.db.models import Model

@@ -1,4 +1,5 @@
 """Provides the simplest possible implementation of AdminActionBaseClass."""
+
 from __future__ import annotations
 
 from django.db.models import Model

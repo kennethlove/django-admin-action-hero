@@ -10,16 +10,16 @@ though, these messages need to be resent to a customer if they didn't receive
 them the first time.
 
 This is what our custom admin action class might look like. We've overridden the
-:py:class:`~admin_actions.lib.AdminActionBaseClass.handle_item` method so that
+:py:class:`~action_hero.lib.AdminActionBaseClass.handle_item` method so that
 it looks up an email template before calling the provided function to send the
 email. We've also overridden the
-:py:class:`~admin_actions.lib.AdminActionBaseClass.__init__` method to accept a
+:py:class:`~action_hero.lib.AdminActionBaseClass.__init__` method to accept a
 new parameter for the email template name.
 
 .. code-block:: python
     :caption: actions/send_email.py
 
-    from admin_actions import AdminActionBaseClass
+    from action_hero.lib import AdminActionBaseClass
     from some_email_module import get_email_template
 
     class SendEmailAction(AdminActionBaseClass):

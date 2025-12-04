@@ -54,7 +54,6 @@ class AdminActionBaseClass(abc.ABC):
             model = MyModel
     """
 
-
     @abc.abstractmethod
     def handle_item(self, item):
         """Handles a single item from the queryset.
@@ -107,7 +106,6 @@ class AdminActionBaseClass(abc.ABC):
                 messages.SUCCESS,
             )
 
-    
     def __init__(
         self,
         function: Function,
@@ -139,8 +137,8 @@ class AdminActionBaseClass(abc.ABC):
         self.function = function
 
         # Internal action identifier
-        self.name = name or function.__name__          
-        self.__name__ = self.name                      
+        self.name = name or function.__name__
+        self.__name__ = self.name
 
         # Human-readable label for admin dropdown
         if short_description is not None:

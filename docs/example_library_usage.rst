@@ -7,10 +7,11 @@ We need an :external+django:py:func:`admin action <django.contrib.admin.action>`
 that will take a batch of records, selected in the admin, make sure each record
 is valid, and then spawn a
 :external+celery:doc:`background task <userguide/tasks>`, for each record, that
-will apply our :ref:`custom processing function <function>` to it. We may need this same kind of
-action in multiple admins or even projects. ``django-admin-action-hero`` helps
-us avoid this repetition by giving us classes to handle common scenarios and an
-:external:std:term:`abstract base class` to use for our own custom action types.
+will apply our :ref:`custom processing function <Function>` to it. We may need
+this same kind of action in multiple admins or even projects.
+``django-admin-action-hero`` helps us avoid this repetition by giving us classes
+to handle common scenarios and an :external:std:term:`abstract base class` to
+use for our own custom action types.
 
 First, let's define a simple
 :external+celery:doc:`background task <userguide/tasks>` using
@@ -68,7 +69,7 @@ create our action instance.
     :caption: admin.py
 
     from django.contrib import admin
-    from admin_actions.actions.queue_celery import QueueCeleryAction
+    from action_hero.actions.queue_celery import QueueCeleryAction
     from .action_filters import is_valid_record
     from .models import Record
     from .tasks import process_record

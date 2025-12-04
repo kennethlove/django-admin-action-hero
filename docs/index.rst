@@ -17,11 +17,11 @@ Celery tasks for different models. Using `django-admin-action-hero`, you can red
 most of that work into just writing the tasks you need to run without worrying
 about the action side of the problem.
 
-This library provides the :py:class:`~admin_actions.lib.AdminActionBaseClass`
+This library provides the :py:class:`~action_hero.lib.AdminActionBaseClass`,
 which can be extended to create custom admin actions. Also provided are two
 ready-to-use action classes:
-:py:class:`~admin_actions.actions.simple.SimpleAction` and
-:py:class:`~admin_actions.actions.queue_celery.QueueCeleryAction`. You can
+:py:class:`~action_hero.actions.simple.SimpleAction` and
+:py:class:`~action_hero.actions.queue_celery.QueueCeleryAction`. You can
 use these implementations directly, extend them for your own customizations, or
 use them as examples for creating your own action classes.
 
@@ -74,7 +74,24 @@ Once you have everything working, follow these steps to submit your changes:
    All tests must pass, of course. Try to cover your new code as much as
    possible. Tests should cover all branches.
 4. Commit your changes, passing all checks.
-5. Update the changelog with `git-cliff <https://github.com/orhun/git-cliff>`__.
-6. Make sure the documentation is up to date and correct.
-7. Push to the branch.
-8. Create a pull request.
+5. Make sure the documentation is up to date and correct.
+6. Push to the branch.
+7. Create a pull request.
+
+Maintainers will want to review your changes, so please be patient. They may
+request changes or improvements before merging. Once everything is approved,
+your changes will be merged and will appear in the next appropriate release.
+
+Release Process
+---------------
+
+1. All checks (tests, linters, etc.) are passing.
+2. All involved pull requests are merged to ``main``.
+3. The version in ``pyproject.toml``, ``docs/conf.py``, and ``action_hero/__init__.py`` is
+   incremented appropriately.
+4. The changelog is updated with
+   `git-cliff <https://github.com/orhun/git-cliff>`__.
+5. Tag the release in git. ``git tag X.Y.Z -m "Release X.Y.Z"``
+6. Push tags to GitHub. ``git push --tags``. This will also trigger a build on
+   GitHub Actions that will publish the new version to TestPyPI and then PyPI.
+7. Create a release on GitHub using the pushed tag.

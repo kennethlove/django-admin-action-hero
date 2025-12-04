@@ -1,21 +1,22 @@
+from action_hero import __version__
+
 project = "django-admin-action-hero"
 author = "klove"
 copyright = "2025-%Y, klove"
-version = "0.1.0"
-release = "0.1.0"
+version = __version__
+release = __version__
 
 exclude_patterns = ["dist"]
 
 extensions = [
     "sphinx_copybutton",
     "sphinx.ext.autodoc",
+    "sphinx.ext.autosectionlabel",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
-    "sphinx.ext.autosectionlabel",
-    "sphinx.ext.extlinks",
 ]
 
-html_theme = "furo"
+html_theme = "alabaster"
 
 # apidoc settings
 apidoc_modules = [
@@ -48,6 +49,14 @@ autodoc_preserve_defaults = False
 
 # copybutton settings
 copybutton_exclude = ".linenos, .gp, .go"
+
+html_theme_options = {
+    "description": "Easily add bulk actions to Django admin",
+    "github_banner": True,
+    "github_button": False,
+    "github_repo": "django-admin-action-hero",
+    "github_user": "kennethlove",
+}
 
 # intersphinx settings
 intersphinx_mapping = {
