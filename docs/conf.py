@@ -31,7 +31,7 @@ apidoc_modules = [
 # autodoc settings
 autodoc_class_signature = "separated"
 autodoc_default_options = {
-    "exclude-members": "__weakref__,_meta",
+    "exclude-members": "__weakref__, _meta",
     "ignore-module-all": False,
     "private-members": "__init__, __call__",
     "show-inheritance": True,
