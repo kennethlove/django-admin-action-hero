@@ -1,9 +1,13 @@
 action_hero
 ===========
 
-Quick access to all ``action_hero`` members. You will use the classes in
-``actions`` in your actual admins. To make your own ``action``-style classes,
-you'll use the members of ``lib``.
+Quick access to all ``action_hero`` members.
+
+The ``action_hero`` package is made up of two main sub-packages: ``actions`` and
+``lib``. The ``actions`` sub-package contains various action implementations
+that can be used in your projects or as inspiration. The ``lib`` sub-package
+provides an abstract base class and types to help you create your own custom
+actions.
 
 .. toctree::
 

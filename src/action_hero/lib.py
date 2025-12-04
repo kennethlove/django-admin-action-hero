@@ -21,7 +21,7 @@ type Function = Callable[[Any], None]
 
 class AdminActionBaseClass(abc.ABC):
     """
-    Generates an admin action for calling a function for a chosen set of records.
+    Generates an admin action that calls a function for a chosen set of records.
 
     Yes, it's basically an abstracted ``map``.
 
@@ -52,29 +52,37 @@ class AdminActionBaseClass(abc.ABC):
         class MyModelAdmin(admin.ModelAdmin):
             actions = [conditional_action, custom_label_action]
             model = MyModel
+
+    If you need custom behavior, subclass ``AdminActionBaseClass`` and override
+    the appropriate method(s). See implementations in ``actions`` for details.
     """
 
     @abc.abstractmethod
     def handle_item(self, item):
         """Handles a single item from the queryset.
 
-        This method will be called for each item in the queryset that passes the condition. Any
-        subclass must implement this method to define how to process each item.
+        This method will be called for each item in the queryset that passes the
+        condition. Any subclass must implement this method to define how to
+        process each item.
 
-        NOTE: This method *is not* asynchronous or in another thread/process; large quantities of
-        work should be done in other ways or places, not solely in this method.
+        NOTE: This method *is not* asynchronous or in another thread/process;
+        large quantities of work should be done in other ways or places, not
+        solely in this method.
 
-        :param item: The model instance being processed.
+        Args:
+            item: The model instance being processed.
         """
 
     def __call__(
         self, modeladmin: ModelAdmin, request: HttpRequest, queryset: QuerySet[Model]
     ) -> None:
-        """Calls ``self.handle_item`` for each item in ``queryset`` that passes ``self.condition``.
+        """Calls ``self.handle_item`` for each item in ``queryset`` that passes
+        ``self.condition``.
 
-        :param modeladmin: The admin instance for the model being processed.
-        :param request: The current HTTP request object.
-        :param queryset: The queryset of records to process.
+        Args:
+            modeladmin: The admin instance for the model being processed.
+            request: The current HTTP request object.
+            queryset: The queryset of records to process.
         """
         _count: int = 0  # Number of records successfully processed
 
@@ -117,10 +125,13 @@ class AdminActionBaseClass(abc.ABC):
         """
         Initializes the action with a function and an optional condition.
 
-        :param function: Callable that takes a model instance.
-        :param condition: Callable for whether to process each record.
-        :param name: Internal identifier used by Django admin.
-        :param short_description: User-facing label shown in the Django admin dropdown.
+        Args:
+            function: Callable that takes a model instance.
+            condition: Callable for whether to process each record.
+            name: Internal identifier used by Django admin if
+                ``short_description`` is not provided.
+            short_description: User-facing label shown in the Django admin
+                dropdown.
         """
 
         if condition is not None:
