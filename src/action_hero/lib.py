@@ -1,4 +1,6 @@
-"""Provides an abstract base class for generating admin actions."""
+"""Provides an abstract base class for generating admin action classes."""
+
+from __future__ import annotations
 
 import abc
 from collections.abc import Callable
@@ -8,6 +10,8 @@ from django.contrib import messages
 from django.contrib.admin import ModelAdmin
 from django.db.models import Model, QuerySet
 from django.http import HttpRequest
+
+__all__ = ["AdminActionBaseClass", "Condition", "Function"]
 
 # Condition to enable the function for an item.
 type Condition = Callable[[Any], bool]
@@ -43,17 +47,11 @@ class AdminActionBaseClass(abc.ABC):
         )
 
         def my_function(record):
-            ...  # perform work on a single model instance
+            # perform work on a single model instance
 
         class MyModelAdmin(admin.ModelAdmin):
             actions = [conditional_action, custom_label_action]
             model = MyModel
-
-    :param function: Required. Callable that takes a single model instance.
-    :param condition: Optional callable returning True/False for each record.
-    :param name: Optional internal identifier used as ``__name__``. If omitted, function.__name__ is used.
-    :param short_description: Optional human-readable label shown in the Django admin dropdown.
-        If omitted, defaults to ``name.replace("_", " ")``.
     """
 
 
@@ -76,8 +74,11 @@ class AdminActionBaseClass(abc.ABC):
         """Calls ``self.handle_item`` for each item in ``queryset`` that passes ``self.condition``.
 
         :param modeladmin: The admin instance for the model being processed.
+        :type modeladmin: ModelAdmin
         :param request: The current HTTP request object.
+        :type request: HttpRequest
         :param queryset: The queryset of records to process.
+        :type queryset: QuerySet[Model]
         """
         _count: int = 0  # Number of records successfully processed
 
@@ -122,9 +123,12 @@ class AdminActionBaseClass(abc.ABC):
         Initializes the action with a function and an optional condition.
 
         :param function: Callable that takes a model instance.
-        :param condition: Optional callable for whether to process each record.
-        :param name: Optional internal identifier used by Django admin.
-        :param short_description: Optional user-facing label shown in the Django admin dropdown.
+        :param condition: Callable for whether to process each record.
+        :type condition: Condition | None
+        :param name: Internal identifier used by Django admin.
+        :type name: str | None
+        :param short_description: User-facing label shown in the Django admin dropdown.
+        :type short_description: str | None
         """
 
         if condition is not None:

@@ -1,29 +1,25 @@
 action\_hero package
 ====================
 
-Subpackages
------------
+The ``action_hero`` package is made up of two main sub-packages: ``actions`` and
+``lib``. The ``actions`` sub-package contains various action implementations
+that can be used in your projects or as inspiration. The ``lib`` sub-package
+provides an abstract base class and types to help you create your own custom
+actions.
+
+Actions
+-------
 
 .. toctree::
    :maxdepth: 4
 
    action_hero.actions
 
-Submodules
-----------
+Library
+-------
 
-action\_hero.lib module
------------------------
+.. toctree::
+   :maxdepth: 3
 
-.. automodule:: action_hero.lib
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
-Module contents
----------------
-
-.. automodule:: action_hero
-   :members:
-   :show-inheritance:
-   :undoc-members:
+   action_hero.lib
+   action_hero.lib#adminactionbaseclass

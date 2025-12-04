@@ -1,4 +1,7 @@
 """Provides an admin action to queue Celery tasks for selected records."""
+from __future__ import annotations
+
+from django.db.models import Model
 
 # Guard import for Celery integration
 try:
@@ -11,9 +14,12 @@ except ImportError as e:
 
 from action_hero.lib import AdminActionBaseClass, Condition
 
+__all__ = ["QueueCeleryAction"]
+
 
 class QueueCeleryAction(AdminActionBaseClass):
-    """Generates an admin action for queuing a Celery task for a chosen set of records.
+    """Generates an admin action for queuing a Celery task for a chosen set of
+    records.
 
     Example usage::
 
@@ -31,22 +37,15 @@ class QueueCeleryAction(AdminActionBaseClass):
         class MyModelAdmin(admin.ModelAdmin):
             actions = [conditional_action, QueueCeleryAction(...), another_action]
             model = MyModel
-
-    :param task: Required. Should be a Celery Task callable that takes a single
-        model instance's primary key as an argument.
-    :param condition: Optional. If provided, it should be a callable that takes a
-        model instance and returns a boolean indicating whether to queue the task
-        for that record.
-    :param name: Optional. If provided, it will be used as the action's name in the
-        admin interface. If it is omitted, the name of the task will be used instead.
     """
 
     function: celery.Task
 
-    def handle_item(self, item):
+    def handle_item(self, item: Model):
         """Queues the Celery task for the given item.
 
         :param item: The model instance being processed.
+        :type item: Model
         """
         self.function.delay(item.pk)
 
@@ -59,12 +58,15 @@ class QueueCeleryAction(AdminActionBaseClass):
     ) -> None:
         """Initializes the action with a Celery task and an optional condition.
 
-        :param task: Required. Should be a Celery Task callable that takes a single model
+        :param task: Should be a Celery Task callable that takes a single model
             instance's primary key as an argument.
-        :param condition: Optional. If provided, it should be a callable that takes a model
-            instance and returns a Boolean indicating whether to queue the task for that record.
-        :param name: Optional. If provided, it will be used as the action's name in the admin.
-            If it is omitted, the name of the task will be used instead.
+        :type task: celery.Task
+        :param condition: A callable that takes a model instance and returns a
+            Boolean indicating whether to queue the task for that record or not.
+        :type condition: Condition | None
+        :param name: The action's name in the admin. If it is omitted, the name
+            of the task will be used instead.
+        :type name: str | None
         """
         if not isinstance(task, (celery.Task,)):
             raise TypeError(f"The task must be a Celery task. Got {type(task)}")
