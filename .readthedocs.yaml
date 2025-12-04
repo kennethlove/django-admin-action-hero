@@ -18,6 +18,9 @@ build:
       - asdf plugin add uv
       - asdf install uv latest
       - asdf global uv latest
+    # Create uv venv
+    create_environment:
+      - uv venv
     # Use uv to install dependencies
     install:
       - uv sync --extra docs
