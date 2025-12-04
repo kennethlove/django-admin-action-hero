@@ -21,7 +21,8 @@ Types
 Condition
 ---------
 
-.. type::  Callable[[Any], bool]
+.. type::  Condition
+.. py:class::  Callable[[Any], bool]
 
 ``action_hero.lib.Condition`` is a type alias for a callable that takes a model
 instance and returns a Boolean indicating whether some condition is met. This
@@ -32,7 +33,8 @@ acts as a :external:py:func:`filter`
 Function
 --------
 
-.. type::  Callable[[Any], None]
+.. type::  Function
+.. py:class::  Callable[[Any], None]
 
 ``action_hero.lib.Function`` is a type alias for a callable that performs some
 operation. The specific signature of the callable is not enforced, allowing for
