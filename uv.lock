@@ -344,7 +344,6 @@ docs = [
     { name = "alabaster" },
     { name = "sphinx" },
     { name = "sphinx-copybutton" },
-    { name = "sphinx-github-style" },
     { name = "sphinx-notfound-page" },
 ]
 
@@ -371,7 +370,6 @@ docs = [
     { name = "alabaster", specifier = ">=1.0" },
     { name = "sphinx", specifier = ">=8.2.3" },
     { name = "sphinx-copybutton", specifier = ">=0.5.2" },
-    { name = "sphinx-github-style", specifier = ">=1.2.2" },
     { name = "sphinx-notfound-page", specifier = ">=1.1.0" },
 ]
 
@@ -847,18 +845,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/fc/2b/a964715e7f5295f77509e59309959f4125122d648f86b4fe7d70ca1d882c/sphinx-copybutton-0.5.2.tar.gz", hash = "sha256:4cf17c82fb9646d1bc9ca92ac280813a3b605d8c421225fd9913154103ee1fbd", size = 23039, upload-time = "2023-04-14T08:10:22.998Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9e/48/1ea60e74949eecb12cdd6ac43987f9fd331156388dcc2319b45e2ebb81bf/sphinx_copybutton-0.5.2-py3-none-any.whl", hash = "sha256:fb543fd386d917746c9a2c50360c7905b605726b9355cd26e9974857afeae06e", size = 13343, upload-time = "2023-04-14T08:10:20.844Z" },
-]
-
-[[package]]
-name = "sphinx-github-style"
-version = "1.2.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "sphinx" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/02/27/f0d375d18c45ba795826070e03dd32c13575f3ec4fb7273654e33c12fb08/sphinx-github-style-1.2.2.tar.gz", hash = "sha256:aad6231fcc0a4f59df82531eb3a82dda8a461a94d9e304895c34ac1158d7347c", size = 11963, upload-time = "2024-05-15T05:02:28.25Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/4f/43/a1aa363d38363f66a668a286691006c11866a6cb5cc75d7325a17395f337/sphinx_github_style-1.2.2-py3-none-any.whl", hash = "sha256:8f6fd1a2c1a5878428a010050549c8353354a1ca9650f6bb01049c649935677d", size = 12324, upload-time = "2024-05-15T05:02:26.833Z" },
 ]
 
 [[package]]
