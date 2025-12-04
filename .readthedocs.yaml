@@ -23,7 +23,7 @@ build:
       - uv venv
     # Use uv to install dependencies
     install:
-      - uv sync --extra docs
+      - uv sync --group docs
     # Build docs with uv
     build:
       html:
