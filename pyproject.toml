@@ -93,6 +93,7 @@ venv = ".venv"
 
 [tool.pytest.ini_options]
 addopts = "--randomly-seed=last --cov=action_hero --cov-report=term-missing --cov-branch"
+plugins = ["pytest_sugar?"]
 django_find_project = false
 DJANGO_SETTINGS_MODULE = "tests.settings"
 minversion = "6.0"
