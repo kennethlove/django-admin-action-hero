@@ -18,11 +18,11 @@ class SimpleAction(AdminActionBaseClass):
 
     Example usage::
 
-    titlecase_titles_action = SimpleAction(function=str.title)
+        titlecase_titles_action = SimpleAction(function=str.title)
 
-    class MyModelAdmin(admin.ModelAdmin):
-        actions = [titlecase_titles_action]
-        model = MyModel
+        class MyModelAdmin(admin.ModelAdmin):
+            actions = [titlecase_titles_action]
+            model = MyModel
 
     This will call ``str.title`` on each record's ``title`` attribute. Because
     this doesn't involve a database write, the change is immediately discarded.

@@ -22,4 +22,4 @@ Library
    :maxdepth: 3
 
    action_hero.lib
-   action_hero.lib#adminactionbaseclass
+   action_hero.lib.AdminActionBaseClass <action_hero.lib.adminactionbaseclass>
