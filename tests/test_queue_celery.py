@@ -23,6 +23,8 @@ def celery_config():
 
 @pytest.fixture
 def celery_task(celery_session_app):
+    """Provides a sample Celery task for testing."""
+
     @celery_session_app.task
     def sample_task(sample_pk: int):  # Must take a single argument
         print(f"Processing record {sample_pk}")
@@ -32,6 +34,7 @@ def celery_task(celery_session_app):
 
 @pytest.fixture
 def mock_delay(celery_task, monkeypatch):
+    """Mock the `delay` method on the Celery task."""
     mock_delay = mock.Mock()
     monkeypatch.setattr(celery_task, "delay", mock_delay)
     return mock_delay
@@ -53,7 +56,6 @@ def test_task_is_delayed_appropriately(
     def _filter(obj: AdminActionsTestModel) -> bool:
         return obj.pk == instance.pk
 
-    # noinspection PyTypeChecker
     queue_action = QueueCeleryAction(celery_task, condition=_filter)
     queue_action(admin, r, AdminActionsTestModel.objects.all())
     mock_delay.assert_called_once_with(instance.pk)
