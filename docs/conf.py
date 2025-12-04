@@ -13,8 +13,8 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.intersphinx",
-    "sphinx.ext.napoleon",
     "sphinx_autodoc_typehints",
+    "sphinx.ext.napoleon",
 ]
 
 html_theme = "alabaster"
