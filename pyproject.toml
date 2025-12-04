@@ -48,10 +48,6 @@ celery = [
     "celery>=5.5.3",
 ]
 
-test = [
-    "pytest>=8.0",
-    "pytest-sugar>=1.0.0",
-]
 
 [project.urls]
 Documentation = "https://django-admin-action-hero.readthedocs.io/en/latest/"
@@ -70,6 +66,7 @@ dev = [
     "pytest-cov>=7.0.0",
     "pytest-django>=4.11.1",
     "pytest-randomly>=4.0.1",
+    "pytest-sugar>=1.0.0",
 ]
 docs = [
     "sphinx>=8.2.3",
