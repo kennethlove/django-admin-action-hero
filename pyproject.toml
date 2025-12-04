@@ -67,7 +67,9 @@ dev = [
     "pytest-randomly>=4.0.1",
 ]
 docs = [
+    "furo>=2025.9.25",
     "sphinx>=8.2.3",
+    "sphinx-copybutton>=0.5.2",
     "sphinx-notfound-page>=1.1.0",
 ]
 

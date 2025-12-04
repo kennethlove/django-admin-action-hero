@@ -16,9 +16,9 @@ email. We've also overridden the
 :py:class:`~admin_actions.lib.AdminActionBaseClass.__init__` method to accept a
 new parameter for the email template name.
 
-::
+.. code-block:: python
+    :caption: actions/send_email.py
 
-    # actions/send_email.py
     from admin_actions import AdminActionBaseClass
     from some_email_module import get_email_template
 
@@ -46,9 +46,9 @@ Now we can use our ``SendEmailAction`` class to make actions for our admin
 interface. Here's an example of how we might use it to create an action that
 sends a welcome email to selected users.
 
-::
+.. code-block:: python
+    :caption: admin.py
 
-    # admin.py
     from .actions.send_email import SendEmailAction
     from some_email_module import send_email
     from myapp.models import User
@@ -70,7 +70,8 @@ emails without having to write the email-sending logic from scratch each time.
 Adding new emails to resend is as simple as creating a new instance of the
 ``SendEmailAction`` with the desired template name.
 
-::
+.. code-block:: python
+    :caption: admin.py
 
         actions = [
             SendEmailAction(

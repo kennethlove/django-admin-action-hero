@@ -45,7 +45,6 @@ class QueueCeleryAction(AdminActionBaseClass):
         """Queues the Celery task for the given item.
 
         :param item: The model instance being processed.
-        :type item: Model
         """
         self.function.delay(item.pk)
 
@@ -60,13 +59,10 @@ class QueueCeleryAction(AdminActionBaseClass):
 
         :param task: Should be a Celery Task callable that takes a single model
             instance's primary key as an argument.
-        :type task: celery.Task
         :param condition: A callable that takes a model instance and returns a
             Boolean indicating whether to queue the task for that record or not.
-        :type condition: Condition | None
         :param name: The action's name in the admin. If it is omitted, the name
             of the task will be used instead.
-        :type name: str | None
         """
         if not isinstance(task, (celery.Task,)):
             raise TypeError(f"The task must be a Celery task. Got {type(task)}")

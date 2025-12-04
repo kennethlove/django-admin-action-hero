@@ -3,9 +3,9 @@ action\_hero.lib
 
 Base classes and types for ``action_hero``.
 
-----------
+------------
 Base classes
-----------
+------------
 
 .. toctree::
    :maxdepth: 4

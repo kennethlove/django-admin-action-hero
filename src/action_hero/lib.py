@@ -74,11 +74,8 @@ class AdminActionBaseClass(abc.ABC):
         """Calls ``self.handle_item`` for each item in ``queryset`` that passes ``self.condition``.
 
         :param modeladmin: The admin instance for the model being processed.
-        :type modeladmin: ModelAdmin
         :param request: The current HTTP request object.
-        :type request: HttpRequest
         :param queryset: The queryset of records to process.
-        :type queryset: QuerySet[Model]
         """
         _count: int = 0  # Number of records successfully processed
 
@@ -124,11 +121,8 @@ class AdminActionBaseClass(abc.ABC):
 
         :param function: Callable that takes a model instance.
         :param condition: Callable for whether to process each record.
-        :type condition: Condition | None
         :param name: Internal identifier used by Django admin.
-        :type name: str | None
         :param short_description: User-facing label shown in the Django admin dropdown.
-        :type short_description: str | None
         """
 
         if condition is not None:

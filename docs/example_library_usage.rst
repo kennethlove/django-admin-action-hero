@@ -18,9 +18,9 @@ First, let's define a simple
 processing on each record. In this case, we're just going to simulate processing
 with a :external:py:func:`print()` call.
 
-::
+.. code-block:: python
+    :caption: tasks.py
 
-    # tasks.py
     from celery import shared_task
 
     @shared_task
@@ -47,9 +47,9 @@ are skipped. This function works like Python's built-in
 keep in mind that this function will be blocking the admin action until it
 completes, so we should avoid long-running operations.
 
-::
+.. code-block:: python
+    :caption: action_filters.py
 
-    # action_filters.py
     def is_valid_record(record):
         # Example validation logic
         return record.is_active  # Only process active records
@@ -64,9 +64,9 @@ place to put our custom admin action to use. Once we import the class for our
 type of action, like the :py:class:`QueueCeleryAction` when using Celery, we can
 create our action instance.
 
-::
+.. code-block:: python
+    :caption: admin.py
 
-    # admin.py
     from django.contrib import admin
     from admin_actions.actions.queue_celery import QueueCeleryAction
     from .action_filters import is_valid_record
