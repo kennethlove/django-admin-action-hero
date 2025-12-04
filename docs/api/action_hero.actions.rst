@@ -1,13 +1,8 @@
 action\_hero.actions package
 ============================
 
-.. automodule:: action_hero.actions
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
-Actions
--------
+Actions provided by the ``action_hero`` package that can be used in your
+projects or as inspiration for creating your own custom actions.
 
 .. toctree::
    :maxdepth: 4

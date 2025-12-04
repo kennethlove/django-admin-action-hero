@@ -6,7 +6,6 @@ Quick access to all ``action_hero`` members. You will use the classes in
 you'll use the members of ``lib``.
 
 .. toctree::
-   :maxdepth: 6
 
    action_hero.actions <action_hero.actions>
    action_hero.lib <action_hero.lib>

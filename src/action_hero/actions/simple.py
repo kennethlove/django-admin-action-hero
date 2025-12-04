@@ -15,6 +15,17 @@ class SimpleAction(AdminActionBaseClass):
     only calls the provided ``function`` with the primary key of each record in
     the ``queryset``. Because the default ``condition`` is always ``True``, this
     action will be carried out for every record.
+
+    Example usage::
+
+    titlecase_titles_action = SimpleAction(function=str.title)
+
+    class MyModelAdmin(admin.ModelAdmin):
+        actions = [titlecase_titles_action]
+        model = MyModel
+
+    This will call ``str.title`` on each record's ``title`` attribute. Because
+    this doesn't involve a database write, the change is immediately discarded.
     """
 
     def handle_item(self, item: Model):
