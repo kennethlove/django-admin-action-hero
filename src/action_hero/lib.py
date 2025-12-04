@@ -151,9 +151,4 @@ class AdminActionBaseClass(abc.ABC):
         self.name = name or function.__name__
         self.__name__ = self.name
 
-        # Human-readable label for admin dropdown
-        if short_description is not None:
-            self.short_description = short_description
-        else:
-            # Fallback consistent with Django conventions
-            self.short_description = self.name.replace("_", " ")
+        self.short_description = short_description
