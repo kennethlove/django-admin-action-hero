@@ -58,16 +58,17 @@ class AdminActionBaseClass(abc.ABC):
     """
 
     @abc.abstractmethod
-    def handle_item(self, item):
+    def handle_item(self, item: Model):
         """Handles a single item from the queryset.
 
         This method will be called for each item in the queryset that passes the
         condition. Any subclass must implement this method to define how to
         process each item.
 
-        NOTE: This method *is not* asynchronous or in another thread/process;
-        large quantities of work should be done in other ways or places, not
-        solely in this method.
+        Note:
+            This method *is not* asynchronous or in another thread/process;
+            large quantities of work should be done in other ways or places, not
+            solely in this method.
 
         Args:
             item: The model instance being processed.
