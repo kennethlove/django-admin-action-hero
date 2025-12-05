@@ -72,3 +72,7 @@ intersphinx_disabled_reftypes = ["*"]
 # napoleon settings
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
+napoleon_type_aliases = {
+    "Condition": "action_hero.lib.Condition",
+    "Function": "action_hero.lib.Function",
+}
