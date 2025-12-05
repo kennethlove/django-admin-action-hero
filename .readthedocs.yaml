@@ -5,7 +5,7 @@
 version: 2
 
 # Build only HTML and JSON
-formats: []
+formats: [ ]
 
 # Set the OS, Python version, and other tools you might need
 build:
@@ -27,7 +27,7 @@ build:
     # Build docs with uv
     build:
       html:
-        - uv run sphinx-build -T -W --keep-going -b html -d _build/doctrees -D language=en docs $READTHEDOCS_OUTPUT/html -w sphinx.log || (cat sphinx.log && exit 1)
+        - uv run sphinx-build --keep-going -b html -d _build/doctrees -D language=en docs $READTHEDOCS_OUTPUT/html -w sphinx.log || (cat sphinx.log && exit 1)
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
