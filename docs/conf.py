@@ -13,8 +13,8 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.intersphinx",
-    "sphinx.ext.napoleon",
     "sphinx_autodoc_typehints",
+    "sphinx.ext.napoleon",
 ]
 
 html_theme = "alabaster"
@@ -72,3 +72,7 @@ intersphinx_disabled_reftypes = ["*"]
 # napoleon settings
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
+napoleon_type_aliases = {
+    "Condition": "action_hero.lib.Condition",
+    "Function": "action_hero.lib.Function",
+}

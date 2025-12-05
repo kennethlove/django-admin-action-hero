@@ -67,6 +67,8 @@ class QueueCeleryAction(AdminActionBaseClass):
                 Boolean indicating whether to queue the task for that record.
             name: The action's name in the admin. If it is omitted, the name
                 of the task will be used instead.
+            short_description: The action's name displayed in the admin.
+              Overrides ``name``.
         """
         if not isinstance(task, (celery.Task,)):
             raise TypeError(f"The task must be a Celery task. Got {type(task)}")

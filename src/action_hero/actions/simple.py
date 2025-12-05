@@ -32,7 +32,7 @@ class SimpleAction(AdminActionBaseClass):
     def handle_item(self, item: Model):
         """Handles a single item from the queryset.
 
-        :param item: The model instance being processed.
-        :type item: Model
+        Args:
+            item: The model instance being processed.
         """
         self.function(item.pk)
