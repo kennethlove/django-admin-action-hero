@@ -123,18 +123,22 @@ class AdminActionBaseClass(abc.ABC):
         :param condition: Optional callable for whether to process each record.
         :param name: Optional internal identifier used by Django admin.
         :param short_description: Optional user-facing label shown in the Django admin dropdown.
+
+        Raises:
+            ConditionError: If the condition is not callable.
+            FunctionError: If the function is not callable.
         """
 
         if condition is not None:
             if isinstance(condition, Callable):
                 self.condition = condition
             else:
-                raise TypeError("The condition must be a callable.")
+                raise ConditionError("The condition must be a callable.")
         else:
             self.condition = lambda _: True
 
         if not callable(function):
-            raise TypeError("The function must be a callable.")
+            raise FunctionError("The function must be a callable.")
 
         self.function = function
 
@@ -143,3 +147,11 @@ class AdminActionBaseClass(abc.ABC):
         self.__name__ = self.name
 
         self.short_description = short_description
+
+
+class ConditionError(Exception):
+    """Raised when the condition is not callable."""
+
+
+class FunctionError(Exception):
+    """Raised when the function is not callable."""
