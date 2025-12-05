@@ -14,6 +14,7 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
+    "sphinx_autodoc_typehints",
 ]
 
 html_theme = "alabaster"
@@ -42,10 +43,12 @@ autodoc_type_aliases = {
     "Function": "action_hero.lib.Function",
     "Condition": "action_hero.lib.Condition",
 }
-autodoc_typehints = "description"  # signature, description, both, none
-autodoc_typehints_description_target = "all"  # all, documented, documented_params
-autodoc_typehints_format = "short"  # full-qualified, short
-autodoc_preserve_defaults = False
+autodoc_typehints = "description"  # options: signature, description, both, none
+autodoc_typehints_description_target = (
+    "all"  # options: all, documented, documented_params
+)
+autodoc_typehints_format = "short"  # options: full-qualified, short
+autodoc_preserve_defaults = True
 
 # copybutton settings
 copybutton_exclude = ".linenos, .gp, .go"
@@ -65,3 +68,7 @@ intersphinx_mapping = {
     "celery": ("https://docs.celeryq.dev/en/stable/", None),
 }
 intersphinx_disabled_reftypes = ["*"]
+
+# napoleon settings
+napoleon_google_docstring = True
+napoleon_numpy_docstring = False
