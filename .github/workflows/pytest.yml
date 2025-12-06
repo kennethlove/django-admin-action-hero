@@ -33,4 +33,4 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Test with pytest, Python version ${{ matrix.python-version }}, Django version ${{ matrix.django-version }}
-        run: uv run --with django==${{ matrix.django-version }} --group dev --frozen pytest --cov-fail-under=95
+        run: uv run --with django==${{ matrix.django-version }} --group dev --frozen pytest --disable-sugar --cov-fail-under=95
