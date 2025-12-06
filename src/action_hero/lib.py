@@ -1,4 +1,6 @@
-"""Provides an abstract base class for generating admin actions."""
+"""Provides an abstract base class for generating admin action classes."""
+
+from __future__ import annotations
 
 import abc
 from collections.abc import Callable
@@ -9,6 +11,8 @@ from django.contrib.admin import ModelAdmin
 from django.db.models import Model, QuerySet
 from django.http import HttpRequest
 
+__all__ = ["AdminActionBaseClass", "Condition", "Function"]
+
 # Condition to enable the function for an item.
 type Condition = Callable[[Any], bool]
 # Function to call for each item.
@@ -17,7 +21,7 @@ type Function = Callable[[Any], None]
 
 class AdminActionBaseClass(abc.ABC):
     """
-    Generates an admin action for calling a function for a chosen set of records.
+    Generates an admin action that calls a function for a chosen set of records.
 
     Yes, it's basically an abstracted ``map``.
 
@@ -43,41 +47,43 @@ class AdminActionBaseClass(abc.ABC):
         )
 
         def my_function(record):
-            ...  # perform work on a single model instance
+            # perform work on a single model instance
 
         class MyModelAdmin(admin.ModelAdmin):
             actions = [conditional_action, custom_label_action]
             model = MyModel
 
-    :param function: Required. Callable that takes a single model instance.
-    :param condition: Optional callable returning True/False for each record.
-    :param name: Optional internal identifier used as ``__name__``. If omitted, function.__name__ is used.
-    :param short_description: Optional human-readable label shown in the Django admin dropdown.
-        If omitted, defaults to ``name.replace("_", " ")``.
+    If you need custom behavior, subclass ``AdminActionBaseClass`` and override
+    the appropriate method(s). See implementations in ``actions`` for details.
     """
 
-
     @abc.abstractmethod
-    def handle_item(self, item):
+    def handle_item(self, item: Model):
         """Handles a single item from the queryset.
 
-        This method will be called for each item in the queryset that passes the condition. Any
-        subclass must implement this method to define how to process each item.
+        This method will be called for each item in the queryset that passes the
+        condition. Any subclass must implement this method to define how to
+        process each item.
 
-        NOTE: This method *is not* asynchronous or in another thread/process; large quantities of
-        work should be done in other ways or places, not solely in this method.
+        Note:
+            This method *is not* asynchronous or in another thread/process;
+            large quantities of work should be done in other ways or places, not
+            solely in this method.
 
-        :param item: The model instance being processed.
+        Args:
+            item: The model instance being processed.
         """
 
     def __call__(
         self, modeladmin: ModelAdmin, request: HttpRequest, queryset: QuerySet[Model]
     ) -> None:
-        """Calls ``self.handle_item`` for each item in ``queryset`` that passes ``self.condition``.
+        """Calls ``self.handle_item`` for each item in ``queryset`` that passes
+        ``self.condition``.
 
-        :param modeladmin: The admin instance for the model being processed.
-        :param request: The current HTTP request object.
-        :param queryset: The queryset of records to process.
+        Args:
+            modeladmin: The admin instance for the model being processed.
+            request: The current HTTP request object.
+            queryset: The queryset of records to process.
         """
         _count: int = 0  # Number of records successfully processed
 
@@ -109,7 +115,6 @@ class AdminActionBaseClass(abc.ABC):
                 messages.SUCCESS,
             )
 
-    
     def __init__(
         self,
         function: Function,
@@ -121,10 +126,13 @@ class AdminActionBaseClass(abc.ABC):
         """
         Initializes the action with a function and an optional condition.
 
-        :param function: Callable that takes a model instance.
-        :param condition: Optional callable for whether to process each record.
-        :param name: Optional internal identifier used by Django admin.
-        :param short_description: Optional user-facing label shown in the Django admin dropdown.
+        Args:
+            function: Callable that takes a model instance.
+            condition: Callable for whether to process each record.
+            name: Internal identifier used by Django admin if
+                ``short_description`` is not provided.
+            short_description: User-facing label shown in the Django admin
+                dropdown.
         """
 
         if condition is not None:
@@ -141,12 +149,7 @@ class AdminActionBaseClass(abc.ABC):
         self.function = function
 
         # Internal action identifier
-        self.name = name or function.__name__          
-        self.__name__ = self.name                      
+        self.name = name or function.__name__
+        self.__name__ = self.name
 
-        # Human-readable label for admin dropdown
-        if short_description is not None:
-            self.short_description = short_description
-        else:
-            # Fallback consistent with Django conventions
-            self.short_description = self.name.replace("_", " ")
+        self.short_description = short_description

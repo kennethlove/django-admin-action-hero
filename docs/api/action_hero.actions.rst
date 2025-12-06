@@ -1,29 +1,11 @@
 action\_hero.actions package
 ============================
 
-Submodules
-----------
+Actions provided by the ``action_hero`` package that can be used in your
+projects or as inspiration for creating your own custom actions.
 
-action\_hero.actions.queue\_celery module
------------------------------------------
+.. toctree::
+   :maxdepth: 4
 
-.. automodule:: action_hero.actions.queue_celery
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
-action\_hero.actions.simple module
-----------------------------------
-
-.. automodule:: action_hero.actions.simple
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
-Module contents
----------------
-
-.. automodule:: action_hero.actions
-   :members:
-   :show-inheritance:
-   :undoc-members:
+   action_hero.actions.queue_celery
+   action_hero.actions.simple

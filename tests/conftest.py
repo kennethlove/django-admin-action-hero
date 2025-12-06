@@ -14,6 +14,8 @@ from .app.models import AdminActionsTestModel
 
 @pytest.fixture
 def mock_function() -> mock.MagicMock:
+    """Create a mock function."""
+
     def _empty_function(*args, **kwargs):
         """A no-op function for testing purposes."""
         pass
@@ -29,16 +31,19 @@ def mock_function() -> mock.MagicMock:
 
 @pytest.fixture
 def admin_site() -> AdminSite:
+    """Create a new AdminSite."""
     return AdminSite()
 
 
 @pytest.fixture
 def admin(admin_site) -> AdminActionsTestModelAdmin:
+    """Create an AdminActionsTestModelAdmin using the provided AdminSite."""
     return AdminActionsTestModelAdmin(AdminActionsTestModel, admin_site)
 
 
 @pytest.fixture
 def mock_messages(admin) -> Generator[MagicMock | AsyncMock, Any, None]:
+    """Mock the `message_user` method on the Admin."""
     mock_messages = mock.patch("action_hero.lib.ModelAdmin.message_user").start()
     yield mock_messages
     mock_messages.stop()
@@ -46,6 +51,8 @@ def mock_messages(admin) -> Generator[MagicMock | AsyncMock, Any, None]:
 
 @pytest.fixture
 def model_instance(db, faker) -> Callable[[], AdminActionsTestModel]:
+    """Create a new instance of AdminActionsTestModel."""
+
     def _create_instance() -> AdminActionsTestModel:
         return AdminActionsTestModel.objects.create(name=faker.word())
 
@@ -76,6 +83,7 @@ def request_with_messages(
     return _request
 
 
+# Decorated like this for type hinting
 request_fixture: Callable[[str, str, Mapping[str, list] | None], HttpRequest] = (
     pytest.fixture(request_with_messages, name="_request")
-)  # Decorated like this for type hinting
+)

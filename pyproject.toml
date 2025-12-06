@@ -69,7 +69,10 @@ dev = [
     "pytest-sugar>=1.0.0",
 ]
 docs = [
+    "alabaster>=1.0",
     "sphinx>=8.2.3",
+    "sphinx-autodoc-typehints>=3.5.2",
+    "sphinx-copybutton>=0.5.2",
     "sphinx-notfound-page>=1.1.0",
 ]
 

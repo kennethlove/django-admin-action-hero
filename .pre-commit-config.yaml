@@ -45,7 +45,7 @@ repos:
       - id: trailing-whitespace
         # preserve markdown linebreaks
         args: [ --markdown-linebreak-ext=md ]
-  # Python and Django linting
+  # Stricter Python and Django linting
   - repo: https://github.com/ambient-innovation/boa-restrictor
     rev: v1.12.4
     hooks:
@@ -62,11 +62,17 @@ repos:
     hooks:
       - id: pymarkdown
         exclude: ^.github/.*$
+  # Sphinx linting
+  - repo: https://github.com/sphinx-contrib/sphinx-lint
+    rev: v1.0.2
+    hooks:
+      - id: sphinx-lint
   # Type checking
   - repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.407
     hooks:
       - id: pyright
+  # Ruff linter and formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.14.6
     hooks:
