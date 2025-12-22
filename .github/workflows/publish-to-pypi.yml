@@ -1,12 +1,19 @@
 name: Publish Python distribution to PyPI and TestPyPI
 on:
   push:
+    branches:
+      # Run on every push to `main`.
+      - main
     tags:
+      # Run on every push to a tag.
       - '*'
   pull_request:
     types:
       - opened
+      - synchronize
+      - reopened
     branches:
+      # Run on every pull request to `main`.
       - main
 
 jobs:
@@ -24,6 +31,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           cache: "pip"
+          # Install hatchling to build the package.
           pip-install: "hatchling>=1.28.0"
       - name: Build a binary wheel and a source tarball
         run: hatchling build
@@ -36,9 +44,12 @@ jobs:
   publish-to-pypi:
     name: PyPI publication
     # Only publish to PyPI on tag pushes.
-    if: ${{ github.ref_type == 'tag' }}
+    if: startsWith(github.ref, 'refs/tags/')
     needs:
+      # `build` needs to complete successfully.
       - build
+      # `publish-to-testpypi` needs to complete successfully.
+      - publish-to-testpypi
     runs-on: ubuntu-latest
 
     environment:
@@ -59,6 +70,9 @@ jobs:
 
   publish-to-testpypi:
     name: TestPyPI publication
+    # Only publish to TestPyPI on push or pull request to `main`.
+    # Skips PRs from forks since they don't have access to secrets.
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
     needs:
       - build
     runs-on: ubuntu-latest
