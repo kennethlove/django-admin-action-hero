@@ -36,7 +36,7 @@ jobs:
   publish-to-pypi:
     name: PyPI publication
     # Only publish to PyPI on tag pushes.
-    if: startsWith(github.ref, 'refs/tags/')
+    if: ${{ github.ref_type == 'tag' }}
     needs:
       - build
     runs-on: ubuntu-latest
@@ -79,5 +79,5 @@ jobs:
       - name: Publish distribution to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repository_url: https://test.pypi.org/legacy/
-          skip_existing: true
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
