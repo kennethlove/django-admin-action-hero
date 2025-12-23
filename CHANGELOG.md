@@ -5,52 +5,86 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.1.1] - 2025-12-23
 
 ### <!-- 0 -->🚀 Features
 
-- Base class and first implementation, plus tests.
-- Simple implementation.
-- Converted AdminActionBaseClass into an ABC. ([#1](https://github.com/kennethlove/django-admin-action-hero/issues/1))
-- Celery enqueuing action.
-- Guard the use of celery-requiring features. ([#5](https://github.com/kennethlove/django-admin-action-hero/issues/5))
+- Improved documentation around contributions ([#59](https://github.com/kennethlove/django-admin-action-hero/issues/59))
 
 ### <!-- 1 -->🐛 Bug Fixes
 
-- Fixes issues in `main` ([#8](https://github.com/kennethlove/django-admin-action-hero/issues/8))
-- Rename package from `django_admin_actions` -> `django-admin-action-hero`
-- Adjust exclusion path for name-tests-test rule
+- RTD and GH Action changes ([#30](https://github.com/kennethlove/django-admin-action-hero/issues/30))
+- Replace PyPI publication condition. Address field name updates. ([#73](https://github.com/kennethlove/django-admin-action-hero/issues/73))
 
 ### <!-- 10 -->💼 Other
 
+- Security docs ([#31](https://github.com/kennethlove/django-admin-action-hero/issues/31))
+- Community docs ([#34](https://github.com/kennethlove/django-admin-action-hero/issues/34))
+- Issue and pull request templates ([#35](https://github.com/kennethlove/django-admin-action-hero/issues/35))
+- Create PULL_REQUEST_TEMPLATE.md ([#36](https://github.com/kennethlove/django-admin-action-hero/issues/36))
+- Add a PR template to make PRs easier to write. ([#37](https://github.com/kennethlove/django-admin-action-hero/issues/37))
+- Use type keyword instead of TypeAlias ([#38](https://github.com/kennethlove/django-admin-action-hero/issues/38))
+- Use `hatchling` to build on GH ([#39](https://github.com/kennethlove/django-admin-action-hero/issues/39))
+- Add Django version 6.0 to test matrix ([#44](https://github.com/kennethlove/django-admin-action-hero/issues/44))
+- More more docs ([#68](https://github.com/kennethlove/django-admin-action-hero/issues/68))
+- Fix GH actions ([#74](https://github.com/kennethlove/django-admin-action-hero/issues/74))
+- Add Django 6.0 to trove classifiers ([#70](https://github.com/kennethlove/django-admin-action-hero/issues/70))
+
+## [0.1.0] - 2025-12-01
+
+### <!-- 0 -->🚀 Features
+
+- Celery enqueuing action.
+- Base class and first implementation, plus tests.
+- Implementation for PubSub
+- Guard the use of celery-requiring features. ([#5](https://github.com/kennethlove/django-admin-action-hero/issues/5))
+- Converted AdminActionBaseClass into an ABC. ([#1](https://github.com/kennethlove/django-admin-action-hero/issues/1))
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- Remove admin_actions dependency and init file
+- Update `model_instance` fixture and uses.
+- Tests get appropriate number of records
+- __init__ signature changed to allow positional `task` argument.
+- Removed unnecessary import from `calendar`
+- Rename pubsub action, control export of actions.
+- Fixes issues in `main` ([#8](https://github.com/kennethlove/django-admin-action-hero/issues/8))
+- Rename project to django-admin-action-hero
+
+### <!-- 10 -->💼 Other
+
+- Initial commit
+- Initial commit.
 - Add pytest fixtures and update tests for celery admin actions
+- Create pytest.yml
+- Update pytest.yml
 - Add GitHub action for tests and coverage
-- PR # [4](https://github.com/kennethlove/django-admin-action-hero/pull/4): Add
-  pre-commit hooks to repo.
+- Adds tests file for PubSub
+- PR # [4](https://github.com/kennethlove/django-admin-action-hero/pull/4): Add pre-commit hooks to repo.
 - Improvements for tests. ([#9](https://github.com/kennethlove/django-admin-action-hero/issues/9))
+- Merge pull request #13
+- Update GH Actions dependencies
+- Merge pull request #12
 - Update lib.py ([#14](https://github.com/kennethlove/django-admin-action-hero/issues/14))
 - Update lib.py ([#15](https://github.com/kennethlove/django-admin-action-hero/issues/15))
 - Documentation ([#11](https://github.com/kennethlove/django-admin-action-hero/issues/11))
 - Pre-launch fixes ([#22](https://github.com/kennethlove/django-admin-action-hero/issues/22))
-- Prek updates
-- More pre-release updates ([#24](https://github.com/kennethlove/django-admin-action-hero/issues/24))
-- Use `type` keyword instead of `TypeAlias`
-
-### <!-- 3 -->📚 Documentation
-
-- Added documentation for library.
-- Added examples for usage and...usage.
+- More pre release updates ([#24](https://github.com/kennethlove/django-admin-action-hero/issues/24))
+- More pre release updates ([#25](https://github.com/kennethlove/django-admin-action-hero/issues/25))
+- Merge pull request #27
 
 ### <!-- 6 -->🧪 Testing
 
-- Basic happy path testing.
 - Non-callable conditions raise an exception.
 - Non-callable tasks should raise
 - Non-`celery.Task` tasks should raise
+- Test for pubsub??
 
 ### <!-- 7 -->⚙️ Miscellaneous Tasks
 
-- Set up various tools to support the project: pre-commit, GitHub Actions,
-  coverage, git-cliff, etc.
+- Remove unused file.
+
+[0.1.1]: https://github.com///compare/0.1.0..0.1.1
+[0.1.0]: https://github.com///tree/0.1.0
 
 <!-- generated by git-cliff -->
