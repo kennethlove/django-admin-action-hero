@@ -10,6 +10,7 @@ exclude_patterns = ["dist"]
 
 extensions = [
     "sphinx_copybutton",
+    "sphinx_tabs.tabs",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.intersphinx",
@@ -76,3 +77,6 @@ napoleon_type_aliases = {
     "Condition": "action_hero.lib.Condition",
     "Function": "action_hero.lib.Function",
 }
+
+# tabs settings
+tabs_disable_tab_closing = True
