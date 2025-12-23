@@ -6,7 +6,7 @@ to create classes that encapsulate admin actions, allowing for better code reuse
 and organization.
 
 * [Read the full docs](https://django-admin-action-hero.readthedocs.io/)
-* [Want to contribute?](CONTRIBUTING.md)
+* [Want to contribute?](https://django-admin-action-hero.readthedocs.io/en/latest/contributing.html)
 
 ## Installation
 
@@ -38,7 +38,6 @@ class MyAdmin(admin.ModelAdmin):
     ]
 ```
 
-Your `MyAdmin` class now has a custom admin action called "my_custom_action"
-that executes `my_admin_function` for each selected item. You can select the
-items in the Django admin interface and run the action from the actions
-dropdown.
+Your `MyAdmin` class now has a custom admin action called "my_custom_action" that
+executes `my_admin_function` for each selected item. You can select the items in
+the Django admin interface and run the action from the "actions" dropdown.
