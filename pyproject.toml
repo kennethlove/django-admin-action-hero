@@ -49,6 +49,7 @@ celery = [
     "celery>=5.5.3",
 ]
 
+
 [project.urls]
 Documentation = "https://django-admin-action-hero.readthedocs.io/en/latest/"
 Repository = "https://github.com/kennethlove/django-admin-action-hero"
@@ -66,6 +67,7 @@ dev = [
     "pytest-cov>=7.0.0",
     "pytest-django>=4.11.1",
     "pytest-randomly>=4.0.1",
+    "pytest-sugar>=1.0.0",
 ]
 docs = [
     "alabaster>=1.0",
@@ -97,6 +99,7 @@ venv = ".venv"
 
 [tool.pytest.ini_options]
 addopts = "--randomly-seed=last --cov=action_hero --cov-report=term-missing --cov-branch"
+plugins = ["pytest_sugar?"]
 django_find_project = false
 DJANGO_SETTINGS_MODULE = "tests.settings"
 minversion = "6.0"
