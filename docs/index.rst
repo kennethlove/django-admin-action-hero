@@ -32,12 +32,56 @@ use them as examples for creating your own action classes.
     How to use existing action classes <example_library_usage>
     How to create your own action classes <example_custom_actions>
     Library module reference <api/modules>
+
     Want to contribute? <contributing>
 
 Installation
 ------------
 
-To install ``django-admin-action-hero``, you'll use
-``pip install django-admin-action-hero`` or add ``django-admin-action-hero`` to
-your ``pyproject.toml`` or ``requirements.txt``. You don't need to add anything
-to your ``INSTALLED_APPS`` to use this library.
+To use ``django-admin-action-hero``, you need to install it into your Python
+environment. You can do this using either ``uv``, ``poetry``, ``pip``, or any
+package manager you prefer. The following examples show how to add the library
+as a dependency in your project.
+
+.. tabs::
+
+    .. tab:: pyproject.toml
+
+        .. tabs::
+
+            .. tab:: uv
+
+                .. parsed-literal::
+
+                    [dependencies]
+                    django-admin-action-hero = "|version|"
+
+            .. tab:: poetry
+
+                .. parsed-literal::
+
+                    [tool.poetry.dependencies]
+                    django-admin-action-hero = "|version|"
+
+
+    .. tab:: requirements.txt
+
+        .. parsed-literal::
+
+            django-admin-action-hero = "|version|"
+
+    .. tab:: uv
+
+        .. parsed-literal::
+
+            uv add django-admin-action-hero=="|version|"
+
+    .. tab:: pip
+
+        .. parsed-literal::
+
+            pip install django-admin-action-hero=="|version|"
+
+``django-admin-action-hero`` does not require any additional setup after
+installation. You can start using the provided action classes or create your own
+custom action classes right away.
